@@ -44,6 +44,27 @@ Firstly go over the concept of a computer *server*. A server is essentially a co
 
 Wouldn't it be great if we could have a server that would take care of allocating IP addresses on our network and remembering who owns what address?
 
-This is exactly what DHCP is for. It stands for Dynamic Host Configuration Protocol. *Dynamic* meaning to constantly change, *Host* is just another word for a computer, *Configuration* meaning to configure your network settings and *Protocol* meaning a set of rules that define how to get things done. D-H-C-P.
+This is exactly what DHCP is for. It stands for Dynamic Host Configuration Protocol. *Dynamic* meaning to constantly change, *Host* is just another word for a computer, *Configuration* meaning to configure your network settings and *Protocol* meaning a set of rules that define how to do things. D-H-C-P.
 
 ## Starter activity
+
+A computing unplugged activity is quite good to get across the logical process followed by the DHCP service.
+
+You wil need:
+- A set of cards with a selection of numbers on them
+- A piece of paper
+- A pen or pencil
+
+Begin by nominating one student to be the DHCP server. They own the set of cards, paper and pen/pencil. The remaining students are now going to be the dynamic hosts (constantly changing computers) on the network.
+
+The DHCP server has a set of rules that must be followed, this is the protocol part of the name. One of the hosts now wants to join the network. This is how the conversation should go:
+
+- HOST: "Hello is there a DHCP server out there?"
+- DHCP: "Yes I am here"
+- HOST: "I am *Dave*, please can I have an IP address?"
+- DHCP: "*Dave* here is your address. You may keep it for 12 hours."
+  
+The DHCP server hands over an address card to *Dave* and writes his name on the paper along with the address that was given, the time it was given out and the lease time. In this case 12 hours.
+
+Stop for a moment and consider if there was any part of this conversation that was unexpected?
+When a computer joins a network it has no way of knowing if a DHCP server is available - so it sends out a broadcast signal to the whole network asking if one is there. If one *is* available it will reply to the host. The host then asks to be given an address. The part you might not have expected is that the address is given with a lease time, in this case 12 hours. Consider why this might be and continue below.
