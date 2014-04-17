@@ -64,7 +64,7 @@ The DHCP server has a set of rules that must be followed, this is the protocol p
 - HOST: "DHCP server, can I take address X please."
 - DHCP: "*Dave*, here is address X. You may keep it for 12 hours."
   
-The DHCP server hands over an address card to *Dave* and writes his name on the paper along with the address that was given, the time *when* it was given and the length of the lease (12 hours). The time it was given is used to keep track of the age of the lease, if you subtract the time now from the time the address was given you get the age of the lease.
+The DHCP server hands over an address card to *Dave* and writes his name on the paper along with the address that was given, the time *when* it was given and the length of the lease (12 hours). The time it was given is used to keep track of the age of the lease.
 
 Stop for a moment and consider if there was any part of this conversation that was unexpected?
 When a computer joins a network it has no way of knowing if a DHCP server is available - so it sends out a broadcast signal to the whole network asking if one is there. If one *is* available it will reply to the host offering an address. The host then officially requests the address. The part you might not have expected is that the address is given with a lease time, in this case 12 hours. Consider why this might be and continue below.
@@ -95,3 +95,12 @@ An alternative version of this conversation might be:
 - DHCP: *Dave* you may keep the address for another 12 hours.
 
 The DHCP server then updates the time at which the address was given to Dave on the paper. Note that not all DHCP servers will use a 12 hour lease, it can be either longer or shorter depending on the server in question.
+
+## Main practical activity
+
+By convention most DHCP servers have a static IP address which will be the first or lowest number in the IP address space for the network. For example most private networks use a local IP address space of `192.168.0.X` where `X` is a number that is different for each device. Following this convention our DHCP server will have a static IP address of `192.168.0.1`. Note the `.1` at the end.The IP addresses it can serve out will then range from `192.168.0.2`, `.3`, `.4` and so on up to `.254`.
+
+Firstly select one Raspberry Pi to act as the DHCP server. It can be a good idea to either put a sticker on it or move it to a more prominent place to avoid any confusion later on.
+
+We'll need to install some software on this Pi, so for this first part you'll need to connect it to another
+LAN for Internet access.
