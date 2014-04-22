@@ -98,9 +98,60 @@ The DHCP server then updates the time at which the address was given to Dave on 
 
 ## Main practical activity
 
-By convention most DHCP servers have a static IP address which will be the first or lowest number in the IP address space for the network. For example most private networks use a local IP address space of `192.168.0.X` where `X` is a number that is different for each device. Following this convention our DHCP server will have a static IP address of `192.168.0.1`. Note the `.1` at the end.The IP addresses it can serve out will then range from `192.168.0.2`, `.3`, `.4` and so on up to `.254`.
+Firstly select one Raspberry Pi to act as the DHCP server. It can be a good idea to either put a sticker on it or move it to a more prominent place to avoid any confusion later on. We'll need to install some software on this Pi, so for this first part you'll need to connect it to another LAN for Internet access.
 
-Firstly select one Raspberry Pi to act as the DHCP server. It can be a good idea to either put a sticker on it or move it to a more prominent place to avoid any confusion later on.
+**Note:** Because only one Raspberry Pi will be the DHCP server this part of the activity is best carried out by one person with all the other students watching. We do not need more than one DHCP server, in fact more than one can cause problems!
 
-We'll need to install some software on this Pi, so for this first part you'll need to connect it to another
-LAN for Internet access.
+Enter the following commands:
+
+```
+sudo apt-get update
+sudo apt-get install dnsmasq
+```
+
+Once that has finished you can disconnect from the LAN with Internet access and return to the original practice hub/switch.
+
+By convention most DHCP servers have a static IP address which will be the first or lowest number in the IP address space for the network. For example most private networks use a local IP address space of `192.168.0.X` where `X` is a number that is different for each device. Following this convention our DHCP server will have a static IP address of `192.168.0.1`. Note the `.1` at the end. The IP addresses it can serve out will then range from `192.168.0.2`, `.3`, `.4` and so on up to `.254`.
+
+So firstly let’s make the DHCP server Raspberry Pi have a static IP address as per this convention. To configure this we must edit the network interfaces file again. Enter the following command:
+
+`sudo nano /etc/network/interfaces`
+
+In this file `eth0` refers to the Raspberry Pi Ethernet port and `wlan0` refers to a wireless dongle if you are using one. Find the following line:
+
+`iface eth0 inet dhcp`
+
+This line is saying "for the interface `eth0` try to get an IP address from a DHCP server". So essentially this is making it a DHCP *client*, but we want to make this a DHCP *server* so this line must be disabled. Put a hash `#` character at the start of the line and add the following four lines below to configure the static IP address.  Just as you did in previous exercises.
+
+```
+# iface eth0 inet dhcp
+auto eth0
+iface eth0 inet static
+address 192.168.0.1
+netmask 255.255.255.0
+```
+
+Press `Ctrl – O` to save followed by `Ctrl – X` to quit out of nano.  Now enter the following command to restart the networking service on the Raspberry Pi:
+
+`sudo service networking restart`
+
+This Raspberry Pi will now always have the IP address `192.168.0.1`. You can double check this by entering the command `ifconfig`, the IP address should be shown on the second line just after `inet addr`.
+
+Next we need to configure the DHCP server software, **dnsmasq**, that was installed earlier. We are going to explicitly specify a configuration file for the dnsmasq service so let’s first make a backup of the default config file and then save our one in its place. Enter the following commands:
+
+```
+cd /etc
+sudo mv dnsmasq.conf dnsmasq.default
+sudo nano dnsmasq.conf
+```
+
+You should now be editing a blank file. Copy and paste the following into it.
+
+```
+interface=eth0
+dhcp-range=192.168.0.2,192.168.0.254,255.255.255.0,12h
+dhcp-option=3,192.168.0.1
+```
+
+The first line tells dnsmasq to listen for DHCP requests on the Ethernet port of the Pi. The second line is specifying the range of IP addresses that can be given out, notice the `12h` at the end which specifies the lease time. The third line provides the default gateway setting for the client host computer (which is used for routing).
+
