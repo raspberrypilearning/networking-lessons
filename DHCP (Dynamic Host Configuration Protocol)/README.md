@@ -38,6 +38,19 @@ How can we make this easier?
 - Use other Raspberry Pi's to get IP addresses from the server
 - Testing the network
 
+## Resources
+
+For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated without any Ethernet cables connecting it into the main school network.
+
+- A Raspberry Pi per pair of students;
+- An Ethernet cable per pair;
+- NOOBS SD card with Raspbian installed per pair;
+- A keyboard and mouse connected to the RPi per pair;
+- A monitor connected to the RPi per pair;
+- An Ethernet hub or switch with enough ports to connect all the RPis;
+- A set of cards with a selection of numbers on them (starter activity)
+- A piece of paper and a pen or pencil (starter activity)
+
 ## Lesson introduction
 
 Firstly go over the concept of a computer *server*. A server is essentially a computer who's main purpose is to provide a service. A web server, for instance, provides the *service* of transmitting web pages, images and files to you over the Internet. A Minecraft server provides the service of preserving the 3D world, remembering what blocks are where and allowing the players to see each other. Servers are computers that are dedicated to a task (but they can be dedicated to more than one).
@@ -51,11 +64,6 @@ This is exactly what DHCP is for. It stands for Dynamic Host Configuration Proto
 ## Starter activity
 
 A computing unplugged activity is quite good to get across the logical process followed by the DHCP service.
-
-You wil need:
-- A set of cards with a selection of numbers on them
-- A piece of paper
-- A pen or pencil
 
 Begin by nominating one student to be the DHCP server. They own the set of cards, paper and pen/pencil. The remaining students are now going to be the dynamic hosts/clients (constantly changing computers) on the network.
 
@@ -232,7 +240,7 @@ Students can now be invited to discuss similarities in the practical exercise to
 
 One question that should be brought up is how the DHCP server can identify each computer that talks to it. In the starter activity the client host computer said “I am Dave” to the DHCP server *before* it had been given an IP address. The DHCP server then wrote *Dave* on the piece of paper against the IP address that was given. What is the equivalent of this for a real computer?
 
-The answer is the *MAC* address! MAC stands for Media Access Control and its a unique ID that is burnt into the hardware of an Ethernet device by the manufacturer. All network devices have them, even wireless and Bluetooth ones. A MAC address is six bytes long and is often shown as six hexadecimal numbers separated by colons or dashes like this: `01:23:45:67:89:ab`.
+The answer is the *MAC* address (sometimes called the physical address). MAC stands for Media Access Control and its a unique ID that is burnt into the hardware of an Ethernet device by the manufacturer. All network devices have them, even wireless and Bluetooth ones. A MAC address is six bytes long and is often shown as six hexadecimal numbers separated by colons or dashes like this: `01:23:45:67:89:ab`.
 
 The MAC address of a Raspberry Pi can be shown using the `ifconfig` command, look under `eth0` and on the first line just after `HWaddr` (hardware address). It will be something like `b8:27:eb:aa:bb:cc`. A Raspberry Pi MAC address always starts with `b8:27:eb`. So it’s actually the MAC address of the client host computer that the DHCP stores to keep a record of who owns what IP address.
 
@@ -240,4 +248,4 @@ Take another look at the ifup and ifdown command output from earlier!
 
 ## Homework
 
-Homework will be an open challenge to find a device in the school or family home that has an in built DHCP server.
+Homework will be an open challenge to find a device in the school or family home that has an in built DHCP server. Write 100 words about why this DHCP server is being used in this place.
