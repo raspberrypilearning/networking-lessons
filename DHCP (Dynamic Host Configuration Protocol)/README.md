@@ -236,6 +236,8 @@ The answer is the *MAC* address! MAC stands for Media Access Control and its a u
 
 The MAC address of a Raspberry Pi can be shown using the `ifconfig` command, look under `eth0` and on the first line just after `HWaddr` (hardware address). It will be something like `b8:27:eb:aa:bb:cc`. A Raspberry Pi MAC address always starts with `b8:27:eb`. So it’s actually the MAC address of the client host computer that the DHCP stores to keep a record of who owns what IP address.
 
+Take another look at the ifup and ifdown command output from earlier!
+
 ## Homework
 
 Homework will be an open challenge to find a device in the school or family home that has an in built DHCP server.
