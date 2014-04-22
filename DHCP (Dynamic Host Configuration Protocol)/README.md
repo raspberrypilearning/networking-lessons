@@ -40,7 +40,9 @@ How can we make this easier?
 
 ## Lesson introduction
 
-Firstly go over the concept of a computer *server*. A server is essentially a computer who's main purpose is to provide a service. A web server, for instance, provides the *service* of transmitting web pages, images and files to you over the Internet. A Minecraft server provides the service of preserving the 3D world, remembering what blocks are where and allowing the players to see each other. **Servers** are computers that are dedicated to a task (but they can be dedicated to more than one).
+Firstly go over the concept of a computer *server*. A server is essentially a computer who's main purpose is to provide a service. A web server, for instance, provides the *service* of transmitting web pages, images and files to you over the Internet. A Minecraft server provides the service of preserving the 3D world, remembering what blocks are where and allowing the players to see each other. Servers are computers that are dedicated to a task (but they can be dedicated to more than one).
+
+A computer or application wishing to use a server is often called a *client* because it is like a customer to the server. Web browsers are sometimes called *web clients* because they work like a customer to a web server. You have probably heard your copy of Minecraft referred to as the *game client* for the same reason.
 
 Wouldn't it be great if we could have a server that would take care of allocating IP addresses on our network and remembering who owns what address?
 
@@ -55,9 +57,9 @@ You wil need:
 - A piece of paper
 - A pen or pencil
 
-Begin by nominating one student to be the DHCP server. They own the set of cards, paper and pen/pencil. The remaining students are now going to be the dynamic hosts (constantly changing computers) on the network.
+Begin by nominating one student to be the DHCP server. They own the set of cards, paper and pen/pencil. The remaining students are now going to be the dynamic hosts/clients (constantly changing computers) on the network.
 
-The DHCP server has a set of rules that must be followed, this is the protocol part of the name. One of the hosts now wants to join the network (who's name is *Dave*). This is how the conversation should go:
+The DHCP server has a set of rules that must be followed, this is the protocol part of the name. One of the hosts/clients now wants to join the network (who's name is *Dave*). This is how the conversation should go:
 
 - HOST: "Hello I am *Dave*, is there a DHCP server out there?"
 - DHCP: "Yes I am here *Dave*. I can offer you address X."
@@ -100,7 +102,9 @@ The DHCP server then updates the time at which the address was given to Dave on 
 
 Firstly select one Raspberry Pi to act as the DHCP server. It can be a good idea to either put a sticker on it or move it to a more prominent place to avoid any confusion later on. We'll need to install some software on this Pi, so for this first part you'll need to connect it to another LAN for Internet access.
 
-**Note:** Because only one Raspberry Pi will be the DHCP server this part of the activity is best carried out by one person with all the other students watching. We do not need more than one DHCP server, in fact more than one can cause problems!
+### On the server Pi only
+
+**Note:** Because only one Raspberry Pi will be the DHCP server this part of the activity is best carried out by one person with all the other students observing. We do not need more than one DHCP server, in fact more than one can cause problems!
 
 Enter the following commands:
 
@@ -121,7 +125,7 @@ In this file `eth0` refers to the Raspberry Pi Ethernet port and `wlan0` refers 
 
 `iface eth0 inet dhcp`
 
-This line is saying "for the interface `eth0` try to get an IP address from a DHCP server". So essentially this is making it a DHCP *client*, but we want to make this a DHCP *server* so this line must be disabled. Put a hash `#` character at the start of the line and add the following four lines below to configure the static IP address.  Just as you did in previous exercises.
+This line is saying: for the interface `eth0` try to get an IP address from a DHCP server. So essentially this is making it a DHCP *client*, but we want to make this a DHCP *server* so this line must be disabled. Put a hash `#` character at the start of the line and add the following four lines below to configure the static IP address.  Just as you did in previous exercises.
 
 ```
 # iface eth0 inet dhcp
@@ -150,8 +154,74 @@ You should now be editing a blank file. Copy and paste the following into it.
 ```
 interface=eth0
 dhcp-range=192.168.0.2,192.168.0.254,255.255.255.0,12h
-dhcp-option=3,192.168.0.1
 ```
 
-The first line tells dnsmasq to listen for DHCP requests on the Ethernet port of the Pi. The second line is specifying the range of IP addresses that can be given out, notice the `12h` at the end which specifies the lease time. The third line provides the default gateway setting for the client host computer (which is used for routing).
+The first line tells dnsmasq to listen for DHCP requests on the Ethernet port of the Pi. The second line is specifying the *range* of IP addresses that can be given out, notice the `12h` at the end of the line which specifies the lease time.
 
+Press `Ctrl – O` to save followed by `Ctrl – X` to quit out of nano. Before we activate the server make sure the DHCP server Pi is the only device connected to the practise hub/switch. Unplug all other Ethernet connections. Enter the following command to restart the dnsmasq service:
+
+`sudo service dnsmasq restart`
+
+The DHCP service is now active and listening for requests from client host computers. 
+
+### On all the client Pi's
+
+Before reconnecting any other client Pi’s to the hub/switch check that their network interfaces files are configured to try and get an IP address from a DHCP server. Enter the following command:
+
+`sudo nano /etc/network/interfaces`
+
+Ensure that a static IP address is *not* specified and check the `iface eth0 inet dhcp` line is there.  Example below.
+
+```
+iface eth0 inet dhcp
+# auto eth0
+# iface eth0 inet static
+# address 192.168.0.1
+# netmask 255.255.255.0
+```
+
+Press `Ctrl – O` to save followed by `Ctrl – X` to quit out of nano.
+
+Restart the networking service on the clients with the command `sudo service networking restart` and you can then go ahead and start reconnecting them to the hub/switch. They should immediately acquire an IP address from the DHCP server.
+
+Check this by using the command `ifconfig` again, the IP addresses given out should be randomly selected from the range specified on the server.
+
+### Test the network
+
+Once everyone has an IP address the network should work as expected. Test it using your chat program or by playing Minecraft together.  Ensure that everyone can successfully ping the DHCP server with the command `ping 192.168.0.1` and ping each other with the command `ping 192.168.0.X` where X is the fourth part of their IP address. The server should also be able to ping the clients.
+
+### One step further
+
+If you want to take it one step further and observe the communication between the DHCP server and the clients the following commands can be used *on the client Pi's*.
+
+Firstly to shut down the Ethernet interface and give back your IP address to the DHCP server:
+
+`sudo ifdown eth0`
+
+You should see output similar to the text below. Note the `DHCPRELEASE` line, this is the IP address being surrendered to the server.
+
+```
+Listening on LPF/eth0/b8:27:eb:aa:bb:cc
+Sending on   LPF/eth0/b8:27:eb:aa:bb:cc
+Sending on   Socket/fallback
+DHCPRELEASE on eth0 to 192.168.0.1 port 67
+```
+
+Next use the following command to start up the Ethernet interface and get an IP address from the DHCP server:
+
+`sudo ifup eth0`
+
+You should see output similar to the text below. Note the `DHCPDISCOVER`, `DHCPREQUEST`, `DHCPOFFER` and `DHCPACK` pack lines. See how they correspond to what was being spoken during the starter activity?
+
+```
+Listening on LPF/eth0/b8:27:eb:aa:bb:cc
+Sending on   LPF/eth0/b8:27:eb:aa:bb:cc
+Sending on   Socket/fallback
+DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 7
+DHCPREQUEST on eth0 to 255.255.255.255 port 67
+DHCPOFFER from 192.168.0.1
+DHCPACK from 192.168.0.1
+bound to 192.168.0.X -- renewal in 40000 seconds.
+```
+
+In normal practise you don’t need to keep using these commands because the same thing automatically happens when the Raspberry Pi boots up, shuts down or has its Ethernet port connected to another device.
