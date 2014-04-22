@@ -172,9 +172,9 @@ Press `Ctrl – O` to save followed by `Ctrl – X` to quit out of nano. Before 
 
 The DHCP service is now active and listening for requests from client host computers. 
 
-### On all the client Pi's
+### On all the remaining client Pi's
 
-Before reconnecting any other client Pi’s to the hub/switch check that their network interfaces files are configured to try and get an IP address from a DHCP server. Enter the following command:
+Before reconnecting any remaining client Pi’s to the hub/switch check that their `/etc/network/interfaces` files are configured to get an IP address from a DHCP server. Enter the following command:
 
 `sudo nano /etc/network/interfaces`
 
