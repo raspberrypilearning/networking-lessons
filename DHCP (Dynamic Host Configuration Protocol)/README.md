@@ -225,3 +225,17 @@ bound to 192.168.0.X -- renewal in 40000 seconds.
 ```
 
 In normal practise you don’t need to keep using these commands because the same thing automatically happens when the Raspberry Pi boots up, shuts down or has its Ethernet port connected to another device.
+
+## Plenary
+
+Students can now be invited to discuss similarities in the practical exercise to the starter activity.
+
+One question that should be brought up is how the DHCP server can identify each computer that talks to it. In the starter activity the client host computer said “I am Dave” to the DHCP server *before* it had been given an IP address. The DHCP server then wrote *Dave* on the piece of paper against the IP address that was given. What is the equivalent of this for a real computer?
+
+The answer is the *MAC* address! MAC stands for Media Access Control and its a unique ID that is burnt into the hardware of an Ethernet device by the manufacturer. All network devices have them, even wireless and Bluetooth ones. A MAC address is six bytes long and is often shown as six hexadecimal numbers separated by colons or dashes like this: `01:23:45:67:89:ab`.
+
+The MAC address of a Raspberry Pi can be shown using the `ifconfig` command, look under `eth0` and on the first line just after `HWaddr` (hardware address). It will be something like `b8:27:eb:aa:bb:cc`. A Raspberry Pi MAC address always starts with `b8:27:eb`. So it’s actually the MAC address of the client host computer that the DHCP stores to keep a record of who owns what IP address.
+
+## Homework
+
+Homework will be an open challenge to find a device in the school or family home that has an in built DHCP server.
