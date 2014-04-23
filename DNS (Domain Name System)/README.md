@@ -65,7 +65,7 @@ The client then communicates directly with the server using the IP address retur
 
 A computing unplugged activity is quite good to get across the logical process followed by the DNS service.
 
-Begin by nominating one student to be the DNS server. Give each remaining student a number card. The DNS server must write down the names of all the students along with their number. This list represents the database of names held by the DNS service.
+Begin by nominating one student to be the DNS server. Give each remaining student a number card. The DNS server should write down the names of all the students along with their number. This list represents the database of names held by the DNS service.
 
 Suppose, for the sake of argument, that all the remaining students are web servers hosting a website. One of the students now wants to type `http://dave` into their web browser. This is how the DNS query would happen:
 
@@ -89,6 +89,8 @@ So in this scenario the first DNS server didn't have 'dave' in its database but 
 Consider how something like this might work on the Internet. Real Internet DNS distributes the responsibility of remembering what name is for an IP address to a network of many DNS servers around the world.
 
 What actually happens is that there are DNS servers dedicated to different domain name levels. For example there will be one for `.com`, another for `.org` and another for `.co.uk`. So when you type in an address like `raspberrypi.org` the query will pass through several DNS servers before the answer gets back to you.
+
+Once an iterative DNS query has been resolved the first DNS server will cache the result, that is to remember it for later. That way if the same name is asked for again it already has the answer and can rapidly respond without having to consult other DNS servers.
 
 ## Main practical activity
 
