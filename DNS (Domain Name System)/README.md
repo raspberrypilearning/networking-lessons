@@ -28,6 +28,7 @@ When we want to access resources on our network such as a web server we currentl
 ### Most students are able to:
 
 - Understand the internal logic of a DNS server
+- Understand the relationship of DNS to DHCP
 
 ## Lesson Summary
 
@@ -41,7 +42,7 @@ When we want to access resources on our network such as a web server we currentl
 For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated without any Ethernet cables connecting it into the main school network.
 
 - The DHCP server Raspberry Pi from the previous lesson;
-- One or more Raspberry Pis with a [Wordpress server](http://www.raspberrypi.org/learning/web-server-wordpress/) running (optional); 
+- One or more Raspberry Pis with a [web server](https://github.com/raspberrypi/documentation/blob/master/remote-access/web-server/apache.md) running (optional); 
 - A Raspberry Pi per pair of students;
 - An Ethernet cable per pair;
 - NOOBS SD card with Raspbian installed per pair;
@@ -70,19 +71,19 @@ Begin by nominating one student to be the DNS server. Give each remaining studen
 Suppose, for the sake of argument, that all the remaining students are web servers hosting a website. One of the students now wants to type `http://dave` into their web browser. This is how the DNS query would happen:
 
 - HOST: "Hello DNS server, can you give me an IP address for the name 'dave' please?"
-- DNS: "I have 'dave' down as X"
-- HOST: "Hello X, please give me your home page."
-- X: "Here is my home page."
+- DNS: "I have 'dave' down as 201.72.165.69"
+- HOST: "Hello 201.72.165.69, please give me your home page."
+- 201.72.165.69: "Here is my home page."
 
 That seems pretty simple doesn't it? Now consider this scenario. Nominate one more student to also be a DNS server and give them responsibility for half of the list of names. This is also how the DNS query could go:
 
 - HOST: "Hello DNS server, can you give me an IP address for the name 'dave' please?"
 - DNS1: "I don't seem to have 'dave', hold on a minute!"
 - DNS1: "DNS2, do you have an IP address for the name 'dave' please?"
-- DNS2: "DNS1, I have 'dave' down as X"
-- DNS1: "HOST, I have found 'dave' to be X"
-- HOST: "Hello X, please give me your home page."
-- X: "Here is my home page."
+- DNS2: "DNS1, I have 'dave' down as 201.72.165.69"
+- DNS1: "HOST, I have found 'dave' to be 201.72.165.69"
+- HOST: "Hello 201.72.165.69, please give me your home page."
+- 201.72.165.69: "Here is my home page."
 
 So in this scenario the first DNS server didn't have 'dave' in its database but it passed on the query to a second DNS server that did. This is what is known as an *iterative DNS query*. The second DNS server responded to the first and the first responed to the original host/client with the IP address information. So the answer was fed back along the chain, so to speak.
 
@@ -92,7 +93,80 @@ What actually happens is that there are DNS servers dedicated to different domai
 
 Once an iterative DNS query has been resolved the first DNS server will cache the result, that is to remember it for later. That way if the same name is asked for again it already has the answer and can rapidly respond without having to consult other DNS servers.
 
+### What about DHCP?
+
+Before finishing off consider what might happen if we brought back the DHCP server from the previous lesson. When using DHCP it is possible for the IP address of a computer to change. When a host shuts down and releases its IP address back to the DHCP server that address could then be given out to another host which is joining the network. That might then lead to a situation where the DNS name no longer matches the right IP address!
+
+Consider what can be done to resolve this problem.
+
 ## Main practical activity
+
+This requires the use of the DHCP server Raspberry Pi from the previous lesson. The software we're going to use is the same **dnsmasq** service from the that lesson, so we don't need to install anything else this time.  Ensure that this Pi is easily distinguishable from the others.
+
+If you have a web server available first do a quick exercise where the students load the home page in a browser using the IP address only. Firstly load the Raspberry Pi desktop with the `startx` command, open the Midori browser and enter the IP address of the web server into the address bar.
+
+If you need to find out the IP address of the web server you can use the `ifconfig` command on the web server Pi itself. The address will be under `eth0` on the second line after `inet addr`. Everyone should be able to load the page correctly.
+
+### On the server Pi only
+
+**Note:** Because only one Raspberry Pi will be the DNS server this part of the activity is best carried out by one person with all the other students observing.
+
+The dnsmasq program can actually provide both DHCP and DNS services. So all we need to do now is configure it. Enter the following command to edit the dnsmasq configuration file:
+
+`sudo nano /etc/dnsmasq.conf`
+
+DNS doesn't have a broadcast system for finding it like DHCP does so the clients/hosts need to be told the DNS server IP address. An easy solution is to make the DHCP server pass this information to the hosts at the same time as their IP address.
+
+Because both DNS and DHCP services are going to be provided by the same Pi the DNS IP address will be the static IP that was given to the server Raspberry Pi in the previous lesson. Add the line below to the end of the file:
+
+```
+dhcp-option=6,192.168.0.1
+```
+
+Next we need to specify where the look up database for DNS queries is. Often this is quite a serious database platform but for this exercise we're just going to use a simple text file to demonstrate the concept.
+
+Now append these two lines:
+
+```
+no-hosts
+addn-hosts=/etc/hosts.dnsmasq
+```
+
+The `no-hosts` line is telling dnsmasq to ignore the default system `/etc/hosts` file for DNS queries. The next line is specifying the file `/etc/hosts.dnsmasq` as the look up file for DNS queries (we will create this in a moment).
+
+So to double check everything, this is how `dnsmasq.conf` should look now:
+
+```
+interface=eth0
+dhcp-range=192.168.0.2,192.168.0.254,255.255.255.0,12h
+dhcp-option=6,192.168.0.1
+no-hosts
+addn-hosts=/etc/hosts.dnsmasq
+```
+
+Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano.
+
+Next we need to create our lookup table for host names. Enter the following command:
+
+`sudo nano /etc/hosts.dnsmasq`
+
+You should now be editing a blank file. There is an expected format that must be followed here. The format is `IP<tab>hostname`, note the use of the tab keyboard key.
+
+Enter the following line for example (this will give our server the DNS name of *serverpi*):
+
+```
+192.160.0.1    serverpi
+```
+
+Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. Before we reactivate the DNS/DHCP server make sure the server Pi is the only device connected to the practise hub/switch. Unplug all other Ethernet connections. Enter the following command to restart the dnsmasq service:
+
+`sudo service dnsmasq restart`
+
+The server is now active and listening for requests from client host computers.
+
+### On all the remaining client Pi's
+
+Before reconnecting any remaining client Pi’s to the hub/switch check that their `/etc/network/interfaces` files are configured to get an IP address from a DHCP server. They should still be configured this way from the previous lesson.
 
 ## Plenary
 
