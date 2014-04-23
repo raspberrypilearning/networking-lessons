@@ -155,7 +155,7 @@ You should now be editing a blank file. There is an expected format that must be
 Enter the following line for example (this will give our server the DNS name of *serverpi*):
 
 ```
-192.160.0.1    serverpi
+192.168.0.1    serverpi
 ```
 
 Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. Before we reactivate the DNS/DHCP server make sure the server Pi is the only device connected to the practise hub/switch. Unplug all other Ethernet connections. Enter the following command to restart the dnsmasq service:
@@ -204,13 +204,40 @@ Enter the following command to edit the dnsmasq configuration file:
 
 `sudo nano /etc/dnsmasq.conf`
 
-You'll see the `dhcp-range` line shows the first IP address, currently 192.168.0.2, followed by the last one, currently 192.168.0.254. Change the first IP address to be *.51* so that we can have the lower 50 IP addresses to use for static IP.
+You'll see the `dhcp-range` line shows the first IP address, currently 192.168.0.2, followed by the last one, currently 192.168.0.254. Change the first IP address to be *.51* so that we can have the lower 50 for static IP addresses.
 
 The line should now look like this:
 
 ```
 dhcp-range=192.168.0.51,192.168.0.254,255.255.255.0,12h
 ```
+
+Now we can safely assign a static IP addresses to our web server. There are actually two ways we can achieve this.  One is to edit the `/etc/network/interfaces` and `/etc/resolv.conf` files on the web server itself or we can configure the DHCP server to recognise it by its MAC address and always assign it the same IP address. The later is the more elegant way because it will also send the DNS server configuration setting via the DHCP offer.
+
+You'll need to look up the MAC address on the web server Pi for this. This can be found by entering the `ifconfig` command on it, look under `eth0` and on the first line just after `HWaddr` (hardware address). It will be something like `b8:27:eb:aa:bb:cc`.
+
+Then add that MAC address into following line of dnsmasq configuration file on the server, for example to always assign 192.168.0.20:
+
+```
+dhcp-host=b8:27:eb:aa:bb:cc,192.168.0.20
+```
+
+Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. 
+
+Now we just need to choose a name for the web server and add it into the `hosts.dnsmasq` file.
+
+`sudo nano /etc/hosts.dnsmasq`
+
+Add a new line to the file following the expected format. For example:
+
+```
+192.168.0.1    serverpi
+192.168.0.20   webserverpi
+```
+
+Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. Enter the following command to restart the dnsmasq service:
+
+`sudo service dnsmasq restart`
 
 ## Plenary
 
