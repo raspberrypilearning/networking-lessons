@@ -143,7 +143,7 @@ address 192.168.0.1
 netmask 255.255.255.0
 ```
 
-Press `Ctrl – O` to save followed by `Ctrl – X` to quit out of nano.  Now enter the following command to restart the networking service on the Raspberry Pi:
+Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano.  Now enter the following command to restart the networking service on the Raspberry Pi:
 
 `sudo service networking restart`
 
@@ -166,7 +166,7 @@ dhcp-range=192.168.0.2,192.168.0.254,255.255.255.0,12h
 
 The first line tells dnsmasq to listen for DHCP requests on the Ethernet port of the Pi. The second line is specifying the *range* of IP addresses that can be given out, notice the `12h` at the end of the line which specifies the lease time.
 
-Press `Ctrl – O` to save followed by `Ctrl – X` to quit out of nano. Before we activate the server make sure the DHCP server Pi is the only device connected to the practise hub/switch. Unplug all other Ethernet connections. Enter the following command to restart the dnsmasq service:
+Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. Before we activate the server make sure the DHCP server Pi is the only device connected to the practise hub/switch. Unplug all other Ethernet connections. Enter the following command to restart the dnsmasq service:
 
 `sudo service dnsmasq restart`
 
@@ -188,7 +188,7 @@ iface eth0 inet dhcp
 # netmask 255.255.255.0
 ```
 
-Press `Ctrl – O` to save followed by `Ctrl – X` to quit out of nano.
+Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano.
 
 Restart the networking service on the clients with the command `sudo service networking restart` and you can then go ahead and start reconnecting them to the hub/switch. They should immediately acquire an IP address from the DHCP server.
 
