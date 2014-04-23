@@ -164,9 +164,29 @@ Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. 
 
 The server is now active and listening for requests from client host computers.
 
+There is one more thing we need to do. Because our server is set up with a static IP address the DHCP server will never actually tell *itself* to use its own DNS server. So there is one more file we need to change to make that work.
+
+`sudo nano /etc/resolv.conf`
+
+This file should have the following line only:
+
+```
+nameserver 127.0.0.1
+```
+
+You could also use 192.168.1.1 here instead but 127.0.0.1 is a generic way to reference the local computer regardless of what its IP address is. So if we changed the static IP to something else we wouldn't need to come and edit `resolv.conf` again.
+
+Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. Now enter the following command to restart the networking service:
+
+`sudo service networking restart`
+
 ### On all the remaining client Pi's
 
 Before reconnecting any remaining client Pi’s to the hub/switch check that their `/etc/network/interfaces` files are configured to get an IP address from a DHCP server. They should still be configured this way from the previous lesson.
+
+You can now go ahead and start reconnecting them to the hub/switch. They should immediately acquire an IP address from the DHCP server. Check this by using the command `ifconfig` again, the IP addresses given out should be randomly selected from the range specified on the server.
+
+You should find that everyone can enter the command `ping serverpi` and get a response from the IP address.
 
 ## Plenary
 
