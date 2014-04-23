@@ -242,7 +242,7 @@ One question that should be brought up is how the DHCP server can identify each 
 
 The answer is the *MAC* address (sometimes called the physical address). MAC stands for Media Access Control and its a unique ID that is burnt into the hardware of an Ethernet device by the manufacturer. All network devices have them, even wireless and Bluetooth ones. A MAC address is six bytes long and is often shown as six hexadecimal numbers separated by colons or dashes like this: `01:23:45:67:89:ab`.
 
-The MAC address of a Raspberry Pi can be shown using the `ifconfig` command, look under `eth0` and on the first line just after `HWaddr` (hardware address). It will be something like `b8:27:eb:aa:bb:cc`. A Raspberry Pi MAC address always starts with `b8:27:eb`. So it’s actually the MAC address of the client host computer that the DHCP stores to keep a record of who owns what IP address.
+The MAC address of a Raspberry Pi can be shown using the `ifconfig` command, look under `eth0` and on the first line just after `HWaddr` (hardware address). It will be something like `b8:27:eb:aa:bb:cc`. A Raspberry Pi MAC address always starts with `b8:27:eb`. So it’s actually the MAC address of the client host computer that the DHCP server stores to keep a record of who owns what IP address.
 
 Take another look at the ifup and ifdown command output from earlier!
 
