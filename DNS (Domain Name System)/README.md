@@ -174,7 +174,7 @@ This file should have the following line only:
 nameserver 127.0.0.1
 ```
 
-You could also use 192.168.1.1 here instead but 127.0.0.1 is a generic way to reference the local computer regardless of what its IP address is. So if we changed the static IP to something else we wouldn't need to come and edit `resolv.conf` again.
+You could also use 192.168.0.1 here instead but 127.0.0.1 is a generic way to reference the local computer regardless of what its IP address is. So if we changed the static IP to something else we wouldn't need to come and edit `resolv.conf` again.
 
 Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. Now enter the following command to restart the networking service:
 
@@ -187,6 +187,30 @@ Before reconnecting any remaining client Pi’s to the hub/switch check that the
 You can now go ahead and start reconnecting them to the hub/switch. They should immediately acquire an IP address from the DHCP server. Check this by using the command `ifconfig` again, the IP addresses given out should be randomly selected from the range specified on the server.
 
 You should find that everyone can enter the command `ping serverpi` and get a response from the IP address.
+
+### One step further: the web server!
+
+Assuming you're using one or more Raspberry Pi [web servers](https://github.com/raspberrypi/documentation/blob/master/remote-access/web-server/apache.md) it would be great to get to point of typing a name into a browser and seeing a home page load. This is the next task!
+
+Before we change anything we need to consider the problem of DHCP IP address allocations changing and becoming out of sync with the DNS server look up table. This was touched on in the starter activity.
+
+There is a convention in networking where server computers (as in providing some kind of service) have static IP addresses. That way the IP address can be entered into the DNS look up database without worrying about it changing at some point in the future.
+
+We need to be careful here! If we just manually assign a static IP address there is a possibility that the DHCP server could hand that same IP address out to another computer joining the network. To avoid that we can change the *range* of IP addresses the DHCP server will give out. If we start the DHCP range at a higher number we can leave ourselves a block of non DHCP IP addresses that we can be free to assign as static addresses for servers.
+
+### Back on the server Pi again
+
+Enter the following command to edit the dnsmasq configuration file:
+
+`sudo nano /etc/dnsmasq.conf`
+
+You'll see the `dhcp-range` line shows the first IP address, currently 192.168.0.2, followed by the last one, currently 192.168.0.254. Change the first IP address to be *.51* so that we can have the lower 50 IP addresses to use for static IP.
+
+The line should now look like this:
+
+```
+dhcp-range=192.168.0.51,192.168.0.254,255.255.255.0,12h
+```
 
 ## Plenary
 
