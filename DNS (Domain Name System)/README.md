@@ -216,7 +216,7 @@ Now we can safely assign a static IP addresses to our web server. There are actu
 
 You'll need to look up the MAC address on the web server Pi for this. This can be found by entering the `ifconfig` command on it, look under `eth0` and on the first line just after `HWaddr` (hardware address). It will be something like `b8:27:eb:aa:bb:cc`.
 
-Then add that MAC address into following line of dnsmasq configuration file on the server, for example to always assign 192.168.0.20:
+Then add that MAC address into following line of dnsmasq configuration file on the DNS server Pi, for example to always assign 192.168.0.20:
 
 ```
 dhcp-host=b8:27:eb:aa:bb:cc,192.168.0.20
