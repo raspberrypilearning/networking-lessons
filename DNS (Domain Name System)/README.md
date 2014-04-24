@@ -270,6 +270,7 @@ For each web server added you need to:
 
 Homework will be to conduct your own research into how iterative DNS queries work on the Internet. Try to find out what the following DNS servers are and what their job is:
 
+- Local DNS server
 - Root DNS server
 - Top level domain DNS server
 - Authoritative DNS server
