@@ -247,7 +247,7 @@ We now just need to make the web server Pi release and renew it’s IP address f
 
 `sudo ifup eth0`
 
-Double check that the correct IP address was given by the DHCP server. Use the `ifconfig` command for this. The address will be under `eth0` on the second line after `inet addr`. If not correct then go back and check the server Pi configuration files for mistakes and repeat the above two commands.
+Double check that the correct IP address was given by the DHCP server. Use the `ifconfig` command for this. The address will be under `eth0` on the second line after `inet addr`. If not correct then go back and check the server Pi configuration files for mistakes, restart dnsmasq and repeat the above two commands.
 
 ### On all the remaining client Pi's
 
