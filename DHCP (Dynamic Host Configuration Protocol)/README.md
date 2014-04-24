@@ -88,23 +88,23 @@ Now let's suppose *Dave* wants to leave the network or is shutting down.  The co
 
 Now consider what might happen if *Dave* didn't shut down cleanly, suppose the power cable was suddenly unplugged and he didn't get a chance to neatly give his address back to the DHCP server, or he decided to just run off with it! What would happen then? The DHCP server won't give out the same address twice so would the address be forever lost in limbo?
 
-This is where the lease time comes in! The address *will* be in limbo but only until the lease time expires. After 12 hours of time goes by this will happen:
+This is where the lease time comes in! The address *will* be in limbo but only until the lease time expires. After 12 hours of time goes by this might happen:
 
-- DHCP: *Dave* are you there? The 12 hour lease time on your IP address has expired, do you wish to renew it?
-- ...no reply...
-- DHCP: I can now safely give that address to another host.
+- HOST: "Hello I am *Fred*, is there a DHCP server out there?"
+- DHCP: "Yes I am here *Fred*. It has been over 12 hours since I last heard from *Dave* so I can can offer you his old address X."
+- HOST: "DHCP server, can I take address X please."
+- DHCP: "*Fred*, here is address X. You may keep it for 12 hours."
 
-The DHCP server makes a new card with that address on, puts it with the others and crosses *Dave* off the list on the paper.
+The DHCP server makes a new card with that address on, hands it to *Fred*, crosses the name *Dave* off the list and replaces it with *Fred*.
 
 So that is how this problem is dealt with, all addresses are given out with a time limit attached to them so that in the event of hosts crashing or suddenly leaving the network the DHCP server will slowly repossess those addresses as their lease times expire.
 
 An alternative version of this conversation might be: 
 
-- DHCP: Dave are you there? The 12 hour lease time on your IP address has expired, do you wish to renew it? 
-- HOST: Yes I am *Dave* and would like to renew.
+- HOST: "DHCP server I am *Dave*, 12 hours have gone by so can I renew address X please."
 - DHCP: *Dave* you may keep the address for another 12 hours.
 
-The DHCP server then updates the time at which the address was given to Dave on the paper. Note that not all DHCP servers will use a 12 hour lease, it can be either longer or shorter depending on the server in question.
+The DHCP server then updates the time at which the address was given to Dave on the paper. Note that not all DHCP servers will use a 12 hour lease, it can be either longer or shorter depending on the server in question. Now if *Fred* wants to join the network he will be given a different address to *Dave*.
 
 ## Main practical activity
 
