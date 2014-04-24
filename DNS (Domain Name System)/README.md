@@ -196,7 +196,7 @@ Before we change anything we need to consider the problem of DHCP IP address all
 
 There is a convention in networking where server computers (as in providing some kind of service) have static IP addresses. That way the IP address can be entered into the DNS look up database without worrying about it changing at some point in the future.
 
-We need to be careful here! If we just manually assign a static IP address there is a possibility that the DHCP server could hand that same IP address out to another computer joining the network. To avoid that we can change the *range* of IP addresses the DHCP server will give out. If we start the DHCP range at a higher number we can leave ourselves a block of non DHCP IP addresses that we can be free to assign as static addresses for servers.
+**We need to be careful here!** If we just manually assign a static IP address there is a possibility that the DHCP server could hand that same IP address out to another computer joining the network. To avoid that we can change the *range* of IP addresses the DHCP server will give out. If we start the DHCP range at a higher number we can leave ourselves a block of non DHCP IP addresses that we can be free to assign as static addresses for servers.
 
 ### Back on the server Pi again
 
@@ -212,7 +212,7 @@ The line should now look like this:
 dhcp-range=192.168.0.51,192.168.0.254,255.255.255.0,12h
 ```
 
-Now we can safely assign a static IP addresses to our web server. There are actually two ways we can achieve this.  One is to edit the `/etc/network/interfaces` and `/etc/resolv.conf` files on the web server itself or we can configure the DHCP server to recognise it by its MAC address and always assign it the same IP address. The later is the more elegant way because it will also send the DNS server configuration setting via the DHCP offer.
+Now we can safely assign a static IP addresses to our web server. There are actually two ways we can achieve this.  One is to edit the `/etc/network/interfaces` and `/etc/resolv.conf` files on the web server itself or we can configure the DHCP server to recognise it by its MAC address and always assign it the same IP address. The later is the more elegant way because it will also send the DNS server configuration setting via the DHCP offer. Plus it puts all the control in the hands of the server.
 
 You'll need to look up the MAC address on the web server Pi for this. This can be found by entering the `ifconfig` command on it, look under `eth0` and on the first line just after `HWaddr` (hardware address). It will be something like `b8:27:eb:aa:bb:cc`.
 
@@ -239,6 +239,39 @@ Press `Ctrl – O, Enter` to save followed by `Ctrl – X` to quit out of nano. 
 
 `sudo service dnsmasq restart`
 
+### On the web server Pi
+
+We now just need to make the web server Pi release and renew it’s IP address from the DHCP server. Then it should end up with the static IP that we have chosen to match the DNS entry. Enter the following commands to do this:
+
+`sudo ifdown eth0`
+
+`sudo ifup eth0`
+
+Double check that the correct IP address was given by the DHCP server. Use the `ifconfig` command for this. The address will be under `eth0` on the second line after `inet addr`. If not correct then go back and check the server Pi configuration files for mistakes and repeat the above two commands.
+
+### On all the remaining client Pi's
+
+The remaining client Pis should now all be able to enter the name `webserverpi` into their web browser and see the home page load. In doing so they will all be performing a successful DNS queries against the server.  The command `ping webserverpi` should also work.
+
 ## Plenary
 
+Students can now be invited to discuss similarities between the practical exercise and the starter activity.
+
+It can be a fun to add a few more web servers into the network giving them both static IP addresses and DNS look up entries. Follow the same process above to do this.
+
+For each web server added you need to:
+- Add a line into `/etc/dnsmasq.conf` to give the server a static IP addressed based on its MAC address
+- Add a DNS look up entry into `/etc/hosts.dnsmasq`
+- Retsart the dnsmasq service with the command: `sudo service dnsmasq restart`
+- Use `sudo ifdown eth0` and `sudo ifup eth0` on the web server itself
+- Finally you can then ping the server or load its home page using the DNS name from the other client Pi's
+
 ## Homework
+
+Homework will be to conduct your own research into how iterative DNS queries work on the Internet. Try to find out what the following DNS servers are and what their job is:
+
+- Root DNS server
+- Top level domain DNS server
+- Authoritative DNS server
+
+Write 100 words on how a DNS query passes between all of the above.
