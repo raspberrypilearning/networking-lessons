@@ -50,7 +50,7 @@ See the [teacher setup instructions](teacher-instructions.md) for more informati
 
 ##Lessons
 
-- [Lesson 1: Sending messages over a network](Lesson-1/lesson-plan-1.md)
+- [Lesson 1: Sending messages over a network](Lesson-1/lesson-plan-1.md) (Note that this lesson requires students to prepare by watching a video beforehand, this can be set as homework from the provious lesson or incorporated where appropriate).
 - [Lesson 2: Controlling hardware over a network](Lesson-2/lesson-plan-2.md)
 - [Lesson 3: Dynamic Host Configuration Protocol (DHCP)]()
 - [Lesson 4: DNS (Domain Name System)]()
