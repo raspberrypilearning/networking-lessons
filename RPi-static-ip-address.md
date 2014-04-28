@@ -48,5 +48,28 @@ If your Pi is not networked then the IP address may not show. Either connect you
 
 If you still cannot see your IP address, or it is different to the one you set, then open the `interfaces` file, as in step 1 of Setup, and check that your edits are correct.
 
+##Clean up - reverting the changes
+
+Normally you don't want your computer set to use a static IP address. You can change the network configuration back by editing the `interfaces` file as follows:
+
+1. Type `sudo nano /etc/network/interfaces` at the command prompt.
+
+2. Look for the line:
 
 
+    ```
+    iface eth0 inet static
+    ```
+
+3. Change the word `static` to `dhcp`
+
+4. Comment out the following lines by putting a `#` in front (you can delete them entirely but you may want them again later):
+
+    ```
+    #address 192.168.0.2
+    #netmask 255.255.255.0
+    #network 192.168.0.0
+    #broadcast 192.168.0.255
+    #gateway 192.168.0.1
+    ```
+5. Save the file with `CTRL + O` and then exit nano with `CTRL + X` then `sudo reboot'
