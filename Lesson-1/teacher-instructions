@@ -17,7 +17,7 @@ Instructions for best practice on [downloading and installing NOOBS can be read 
 ### Downloading network.py
 
 1. After booting, log in using the default log in `pi` and password `raspberry`.
-2. On the command line type: `wget https://github.com/raspberrypilearning/networking-lessons/raw/master/Lesson-1/network.py`
+2. On the command line type: `wget http://git.io/GHo7cw -O network.py --no-check-certificate`
 3. Type `ls` to check that the file has downloaded.
 
 	
