@@ -1,6 +1,6 @@
 # Networking
 
-![networking pic here]()
+![Networked Raspberry Pi](pi-network.jpg)
 
 ## Introduction
 
