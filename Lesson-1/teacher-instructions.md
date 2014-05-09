@@ -1,4 +1,4 @@
-## Teacher Setup Instructions: nettworking lesson 1
+## Teacher Setup Instructions: networking lesson 1
 
 For this scheme of work students will need access to:
 
