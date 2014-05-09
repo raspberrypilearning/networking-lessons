@@ -22,7 +22,16 @@ Before the Raspberry Pis can communicate they need to be connected together via 
 
 You should see something like this:
 
-![image of ping success]()
+```
+
+PING 192.168.1.3 (192.168.1.3) 56(84) bytes of data.
+64 bytes from 192.168.1.3: icmp_req=1 ttl=128 time=3.46 ms
+[...four more PINGs ...]
+
+--- 192.168.1.3 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4007ms
+rtt min/avg/max/mdev = 3.466/3.788/4.380/0.322 ms
+```
 
 If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked you are ready to write the chat program.
 
