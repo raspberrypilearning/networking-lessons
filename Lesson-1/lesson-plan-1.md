@@ -50,8 +50,6 @@ This starter is quick fire "ideas" round to introduce students to the ubiquity o
 
 4. Ask each group for one device they have chosen and briefly discuss. Add a few not so obvious ones (bank ATMs, speed cameras etc). Emphasise that the modern world relies on computer networks and they will now build their own.
 
-[later]
-
 ## Main Development
 The concepts that they learned from the homework will come into use and consolidate as they complete the tasks.
 
