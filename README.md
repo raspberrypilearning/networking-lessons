@@ -33,6 +33,8 @@ Over the course of four lessons, students will learn:
 - understand the hardware and software components that make up computer systems,
 and how they communicate with one another and with other systems
 
+The lessons use the Python programming language and therefore also address several programming aspects of the programme of study.
+
 [National Curriculum Computing Programmes of Study](https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study#key-stage-3)
 
 ##Resources
@@ -41,7 +43,7 @@ It is suggested that work is carried out by students on a Raspberry Pi each or i
 
 - A Raspberry Pi with the following set up:
   - the latest NOOBS SD card with Raspbian installed
-  - network.py, network\_led.py and network\_switch.py copied to the SD card
+  - network.py and thing-client.py copied to the SD card
   - a keyboard, mouse and monitor
   - one network cable between two Raspberry Pis
   - four female-female header leads and one LED (lesson 2 only)
