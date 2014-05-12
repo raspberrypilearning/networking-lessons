@@ -6,7 +6,7 @@ There are two steps to setting up the Raspberry Pis so you can send chat message
 
 Before the Raspberry Pis can communicate they need to be connected together via a network. Normally when a device connects to a network it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis we have to give each Pi its own IP address.
 
-1. [Follow this guide](RPi-static-ip-address.md) to get configure the IP address.
+1. [Follow this guide](RPi-static-ip-address.md) to configure the IP address.
 
 2. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`
 
