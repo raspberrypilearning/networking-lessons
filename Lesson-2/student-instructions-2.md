@@ -75,7 +75,12 @@ while True:
 3. Save the file with `CTRL-O` and then exit nano with `CTRL-X`
 
 ##Setting up the hardware
-[fritzing diagram here]
+**Important**: do not connect hardware directly to the pins! Use female header wires that you can plug onto the GPIO pins and your hardware. 
+###1. Set up the client machine with an LED
+![](client-LED-setup.png)
+###2. Set up server with a button
+Note: you do not need a button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or similar. Again, use header wires that protect the GPIO pins.
+![](server-button-setup.png)
 
 
 ##Running the program
