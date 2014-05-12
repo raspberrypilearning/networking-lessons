@@ -4,19 +4,19 @@ There are two steps to setting up the Raspberry Pis so you can send chat message
 
 ##Network configuration
 
-Before the Raspberry Pis can communicate they need to be connected together via a network. Normally when a device connects to a network it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis we have to give each Pi its own IP address.
+Before the Raspberry Pis can communicate they need to be connected together via a network. Normally when a device connects to a network it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis, we have to give each Pi its own IP address.
 
 1. [Follow this guide](RPi-static-ip-address.md) to configure the IP address.
 
 2. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`
 
-**Tip:** Use a Post-it note to physically label the Raspberry Pis with their IP addresses otherwise things will get confusing later!
+**Tip:** Use a Post-it note to physically label the Raspberry Pis with their IP addresses, otherwise things will get confusing later!
 
 
 ###Testing your network
 
 1. Connect the two Pis with an Ethernet cable
-2. On the Pi that has the IP address ending `.02`, Type:
+2. On the Pi that has the IP address ending `.02`, type:
     
     `ping 192.168.0.3 -c5`
 
@@ -33,7 +33,7 @@ PING 192.168.0.3 (192.168.0.3) 56(84) bytes of data.
 rtt min/avg/max/mdev = 3.466/3.788/4.380/0.322 ms
 ```
 
-If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked you are ready to write the chat program.
+If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked, you are ready to write the chat program.
 
 ##Setting up the chat program
 
@@ -71,14 +71,14 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
     `python chat.py 192.168.0.2`
 
-6. You should now be able to type messages on either Pi and they will appear on the other screen when you press the enter key.
+6. You should now be able to type messages on either Pi, and they will appear on the other screen when you press the `enter` key.
 
  Try it! Send messages from the server to the client and vice versa. 
 
 ###Things to think about when sending messages: 
-- what is happening on screen?
-- what is physcially happening to the messages when you press the enter key?
-- how do the messages know where to go?
+- What is happening on screen?
+- What is physically happening to the messages when you press the `enter` key?
+- How do the messages know where to go?
 
 
 ###Things to try: 
@@ -88,11 +88,11 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
 ###Programming challenges
 
-- Display a welcome message when your program starts
-- Display a welcome message to your caller when they connect
-- Display an increasing message counter for me: and them: on each message
-- When you type in a certain letter or word, get it to expand this to a whole sentence that is sent to your caller
-- When the word "random" is typed, send one of a number of different random messages to your  caller
+- Display a welcome message when your program starts.
+- Display a welcome message for your caller when they connect.
+- Display an increasing message counter for me: and them: on each message.
+- When you type in a certain letter or word, get it to expand this to a whole sentence that is sent to your caller.
+- When the word "random" is typed, send one of a number of different random messages to your callerl
 - When certain words are received from your caller, automatically send a whole phrase back to them (different phrases for different words).
 
 #Cleanup
