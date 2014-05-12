@@ -1,4 +1,4 @@
-## Teacher Setup Instructions: networking lesson 1
+## Teacher Setup Instructions: Networking Lesson 1
 
 For this scheme of work students will need access to:
 
@@ -16,8 +16,8 @@ Instructions for best practice on [downloading and installing NOOBS can be read 
 
 ### Downloading network.py
 
-1. After booting, log in using the default log in `pi` and password `raspberry`.
-2. On the command line type: `wget http://git.io/GHo7cw -O network.py --no-check-certificate`
+1. After booting, log in using the default login `pi` and password `raspberry`.
+2. On the command line type: `wget http://git.io/GHo7cw -O network.py --no-check-certificate`.
 3. Type `ls` to check that the file has downloaded.
 
 	
@@ -25,9 +25,9 @@ Instructions for best practice on [downloading and installing NOOBS can be read 
 
 Once you have completed the steps above, you are able to make a copy of your master SD card and then use that to make a class set.
 
-1. Place your master SD card in a computer or laptop with an SD card reader. 
-2. On windows use [Win disk 32 imager](http://sourceforge.net/projects/win32diskimager/) to make a copy of an SD card. On MAC OSX you can use the `dd` command or a [dd-gui](http://www.gingerbeardman.com/dd-gui/).
+1. Place your master SD card in a desktop computer or laptop with an SD card reader. 
+2. On Windows use [Win disk 32 imager](http://sourceforge.net/projects/win32diskimager/) to make a copy of an SD card. On Mac OS X you can use the `dd` command or a [dd-gui](http://www.gingerbeardman.com/dd-gui/).
 3. Remove the master SD card and keep it safe.
 4. Take a fresh SD card and insert it into your computer or laptop. 
-5. Format the SD card then using your imaging software, select the image and write it to the card.
+5. Format the SD card. Then, using your imaging software, select the image and write it to the card.
 6. Repeat the last step for the rest of your cards. 
