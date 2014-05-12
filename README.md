@@ -10,10 +10,11 @@ This scheme of work is specifically targeted towards KS3 and KS4 Computing, alth
 
 ##Learning outcomes:
 
-Over the course of three lessons, students will learn:
+Over the course of four lessons, students will learn:
 
 - how to network two or more Raspberry Pis together
 - how to program a Raspberry Pi to send messages to another Pi
+- how to control hardware over a network
 - network configuration and server set up
 - basic networking concepts including:
 	- IP address
@@ -43,14 +44,16 @@ It is suggested that work is carried out by students on a Raspberry Pi each or i
   - network.py, network\_led.py and network\_switch.py copied to the SD card
   - a keyboard, mouse and monitor
   - one network cable between two Raspberry Pis
+  - four female-female header leads and one LED (lesson 2 only)
 
 See the [teacher setup instructions](teacher-instructions.md) for more information.
 
 ##Lessons
 
 - [Lesson 1: Sending messages over a network](Lesson-1/lesson-plan-1.md) (Note that this lesson requires students to prepare by watching a video beforehand, this can be set as homework from the provious lesson or incorporated where appropriate).
-- [Lesson 2: Dynamic Host Configuration Protocol (DHCP)]()
-- [Lesson 3: DNS (Domain Name System)]()
+- [Lesson 2: Controlling hardware over a network](Lesson-2/lesson-plan-2.md)
+- [Lesson 3: Dynamic Host Configuration Protocol (DHCP)]()
+- [Lesson 4: DNS (Domain Name System)]()
 
 ## Licence
 
@@ -61,4 +64,5 @@ Unless otherwise specified, everything in this repository is covered by the foll
 ***Networking Lessons*** by the [Raspberry Pi Foundation](http://raspberrypi.org) is licenced under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
 Based on a work at https://github.com/raspberrypilearning/networking-lessons
+Lessons 1 and 2 based on ideas and code by @whaleygeek
 
