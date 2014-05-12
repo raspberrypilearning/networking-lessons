@@ -1,13 +1,13 @@
 # Lesson 1 - How do computers communicate? 
 
 ##Introduction
-In this lesson will build a simple network and use it to communicate using a network chat program.
+In this lesson you will build a simple network and use it to communicate using a network chat program.
 
 Computer networks are everywhere, from the web to mobile phones, social networking, cash machines to video streaming; traffic lights to online games.
 
-Networks can be hugely complicated but they can also be as simple as two computers or devices connected together. In this lesson students will learn how to network two Raspberry Pis and then write a small program in Python that allows them to send messages to each other.
+Networks can be hugely complicated, but they can also be as simple as two computers or devices connected together. In this lesson students will learn how to network two Raspberry Pis and then write a small program in Python that allows them to send messages to each other.
 
-If students are not confident with setting up the Raspberry Pi and editing and running Python programs you might want to try a scheme of work such as the [Turing Test](https://github.com/raspberrypilearning/turing-test-lessons)first.
+If students are not confident with setting up the Raspberry Pi and editing and running Python programs you might want to try a scheme of work such as the [Turing Test](https://github.com/raspberrypilearning/turing-test-lessons) first.
 
 ## Learning Objectives
 
@@ -18,17 +18,17 @@ If students are not confident with setting up the Raspberry Pi and editing and r
 
 ###All students are able to:
 
-- explain that a computer network is two or more computers joined together
-- use a simple program to send messages between two computers
+- Explain that a computer network is two or more computers joined together
+- Use a simple program to send messages between two computers
 
 ###Most students are able to:
 
-- explain that every computer on a network needs a unique addreess called an IP address
-- make simple changes to their program such as changing screen prompts and adding welcome messages
+- Explain that every computer on a network needs a unique addreess called an IP address
+- Make simple changes to their program such as changing screen prompts and adding welcome messages
 
 ###Some students are able to:
 
-- make more complex changes to their program such as sending responses to key words
+- Make more complex changes to their program such as sending responses to key words
 
 ## Lesson Summary
 
