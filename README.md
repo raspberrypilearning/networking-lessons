@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This scheme of work has been designed as an introduction to networking on the Raspberry Pi. Students will set up and use various networks and will be introduced to basic networking through practical activities.
+This scheme of work has been designed as an introduction to networking on the Raspberry Pi. Students will set up and use various networks, and will be introduced to basic networking through practical activities.
 
 This scheme of work is specifically targeted towards KS3 and KS4 Computing, although the first two lessons could be used at KS2. It has been developed in the context of the 2014 National Curriculum in England, but is not specific to that programme.
 
@@ -12,13 +12,13 @@ This scheme of work is specifically targeted towards KS3 and KS4 Computing, alth
 
 Over the course of four lessons, students will learn:
 
-- how to network two or more Raspberry Pis together
-- how to program a Raspberry Pi to send messages to another Pi
-- how to control hardware over a network
-- network configuration and server set up
-- basic networking concepts including:
+- How to network two or more Raspberry Pis together
+- How to program a Raspberry Pi to send messages to another Pi
+- How to control hardware over a network
+- Network configuration and server set up
+- Basic networking concepts including:
 	- IP address
-	- servers and clients
+	- Servers and clients
 	- DHCP
 	- DNS
 
@@ -26,12 +26,11 @@ Over the course of four lessons, students will learn:
 
 ###KS2:
 
--understand computer networks including the internet
+- Understand computer networks including the internet
 
 ###KS3:
 
-- understand the hardware and software components that make up computer systems,
-and how they communicate with one another and with other systems
+- Understand the hardware and software components that make up computer systems, and how they communicate with one another and with other systems.
 
 The lessons use the Python programming language and therefore also address several programming aspects of the programme of study.
 
@@ -42,17 +41,17 @@ The lessons use the Python programming language and therefore also address sever
 It is suggested that work is carried out by students on a Raspberry Pi each or in pairs. Each Raspberry Pi will connect to one other Pi in the first lessons so you will need an even number. Each student or pair should have access to the following equipment:
 
 - A Raspberry Pi with the following set up:
-  - the latest NOOBS SD card with Raspbian installed
-  - network.py and thing-client.py copied to the SD card
-  - a keyboard, mouse and monitor
-  - one network cable between two Raspberry Pis
-  - four female-female header leads and one LED (lesson 2 only)
+  - The latest NOOBS SD card with Raspbian installed
+  - `network.py` and `thing-client.py` copied to the SD card
+  - A keyboard, mouse and monitor
+  - One network cable between two Raspberry Pis
+  - Four female-to-female header leads and one LED (lesson 2 only)
 
 See the [teacher setup instructions](teacher-instructions.md) for more information.
 
 ##Lessons
 
-- [Lesson 1: Sending messages over a network](Lesson-1/lesson-plan-1.md) (Note that this lesson requires students to prepare by watching a video beforehand, this can be set as homework from the provious lesson or incorporated where appropriate).
+- [Lesson 1: Sending messages over a network](Lesson-1/lesson-plan-1.md) (Note that this lesson requires students to prepare by watching a video beforehand; this can be set as homework from the provious lesson or incorporated where appropriate).
 - [Lesson 2: Controlling hardware over a network](Lesson-2/lesson-plan-2.md)
 - [Lesson 3: Dynamic Host Configuration Protocol (DHCP)]()
 - [Lesson 4: DNS (Domain Name System)]()
