@@ -72,19 +72,19 @@ Begin by nominating one student to be the DNS server. Give each remaining studen
 Suppose, for the sake of argument, that all the remaining students are web servers hosting a website. One of the students now wants to type `http://dave` into their web browser. This is how the DNS query would proceed:
 
 - HOST: "Hello DNS server, can you give me an IP address for the name 'dave' please?"
-- DNS: "I have 'dave' down as 201.72.165.69"
-- HOST: "Hello 201.72.165.69, please give me your home page."
-- 201.72.165.69: "Here is my home page."
+- DNS: "I have 'dave' down as `201.72.165.69`"
+- HOST: "Hello `201.72.165.69`, please give me your home page."
+- `201.72.165.69`: "Here is my home page."
 
 That seems pretty simple, doesn't it? Now consider this scenario. Nominate one more student to also be a DNS server and give them responsibility for half of the list of names. This is also how the DNS query could proceed:
 
 - HOST: "Hello DNS server, can you give me an IP address for the name 'dave' please?"
 - DNS1: "I don't seem to have 'dave', hold on a minute!"
 - DNS1: "DNS2, do you have an IP address for the name 'dave' please?"
-- DNS2: "DNS1, I have 'dave' down as 201.72.165.69"
-- DNS1: "HOST, I have found 'dave' to be 201.72.165.69"
-- HOST: "Hello 201.72.165.69, please give me your home page."
-- 201.72.165.69: "Here is my home page."
+- DNS2: "DNS1, I have 'dave' down as `201.72.165.69`"
+- DNS1: "HOST, I have found 'dave' to be `201.72.165.69`"
+- HOST: "Hello `201.72.165.69`, please give me your home page."
+- `201.72.165.69`: "Here is my home page."
 
 So in this scenario the first DNS server didn't have 'dave' in its database, but it passed on the query to a second DNS server that did. This is what is known as an *iterative DNS query*. The second DNS server responded to the first and the first responded to the original host/client with the IP address information. The answer was fed back along the chain, so to speak.
 
@@ -175,7 +175,7 @@ This file should have the following line only:
 nameserver 127.0.0.1
 ```
 
-You could also use 192.168.0.1 here instead but 127.0.0.1 is a generic way to reference the local computer, regardless of what its IP address is. So if we changed the static IP to something else we wouldn't need to edit `resolv.conf` again.
+You could also use `192.168.0.1` here instead but `127.0.0.1` is a generic way to reference the local computer, regardless of what its IP address is. So if we changed the static IP to something else we wouldn't need to edit `resolv.conf` again.
 
 Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano. Now enter the following command to restart the networking service:
 
@@ -205,7 +205,7 @@ Enter the following command to edit the `dnsmasq` configuration file:
 
 `sudo nano /etc/dnsmasq.conf`
 
-You'll see the `dhcp-range` line shows the first IP address (currently 192.168.0.2) followed by the last one (currently 192.168.0.254). Change the first IP address to be *.51* so that we can have the lower 50 for static IP addresses.
+You'll see the `dhcp-range` line shows the first IP address (currently `192.168.0.2`) followed by the last one (currently `192.168.0.254`). Change the first IP address to be *.51* so that we can have the lower 50 for static IP addresses.
 
 The line should now look like this:
 
@@ -217,7 +217,7 @@ Now we can safely assign a static IP address to our web server. There are actual
 
 You'll need to look up the MAC address on the web server Pi for this. This can be found by entering the `ifconfig` command on it; look under `eth0` and on the first line just after `HWaddr` (hardware address). The MAC address will be something like `b8:27:eb:aa:bb:cc`.
 
-Add that MAC address into the following line of the `dnsmasq` configuration file on the DNS server Pi. For example, to always assign 192.168.0.20:
+Add that MAC address into the following line of the `dnsmasq` configuration file on the DNS server Pi. For example, to always assign `192.168.0.20`:
 
 ```
 dhcp-host=b8:27:eb:aa:bb:cc,192.168.0.20
