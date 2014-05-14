@@ -1,7 +1,6 @@
 #Code review
 
-Rearrange the blocks of Python code below in the correct order. It's similar to part of the the chat program that you wrote in Lesson 1.
-The lines beginning with a hash (#) are comments to help understand what each block does
+Rearrange the blocks of Python code below in the correct order. It's similar to part of the the chat program that you wrote in Lesson 1. The lines beginning with a hash (#) are comments to help understand what each code block does.
 
 
 ----------
@@ -15,7 +14,7 @@ The lines beginning with a hash (#) are comments to help understand what each bl
 
 ----------
 ```
-#a funtion that prints a message
+#a function that prints a message
 def heard(phrase):
   print("them:" + phrase)
 ```
@@ -41,8 +40,3 @@ import sys
 ```
 
 ----------
-
-
-
-
-
