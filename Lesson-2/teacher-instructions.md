@@ -9,7 +9,7 @@ For this scheme of work students will need access to:
 - An Ethernet cable for each pair of Raspberry Pis
 - The `network.py` file
 - Four female-to-female header leads
-- A 270k resistor
+- A 270 ohm resistor
 - An LED
 - A button (or paperclip or similar)
 
