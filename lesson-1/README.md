@@ -1,6 +1,4 @@
-# Lesson 1 - How do computers communicate? 
-
-##Introduction
+# Lesson 1 - How do computers communicate?
 
 In this lesson you will build a simple network and use it to communicate using a network chat program.
 
@@ -17,17 +15,17 @@ If students are not confident with setting up the Raspberry Pi and editing and r
 
 ## Learning outcomes
 
-###All students are able to:
+### All students are able to:
 
 - Explain that a computer network is two or more computers joined together
 - Use a simple program to send messages between two computers
 
-###Most students are able to:
+### Most students are able to:
 
 - Explain that every computer on a network needs a unique address called an IP address
 - Make simple changes to their program such as changing screen prompts and adding welcome messages
 
-###Some students are able to:
+### Some students are able to:
 
 - Make more complex changes to their program such as sending responses to keywords
 
@@ -46,12 +44,12 @@ In the *previous* lesson ask the students to watch [this video on basic networki
 This starter is a quick-fire "ideas" round to introduce students to the ubiquity of networks and why they are useful or, in their eyes, essential!
 
 1. Introduce the idea that computer networks are everywhere. In groups of two or three, ask the students to write down as many networked devices (or uses of networking) as they can in two minutes. Give them one or two examples to get them started.
-    
-2. Ask the groups to circle any of the devices on their list that they have used since they got up this morning. They have one minute to do this.
 
-3. The group *touching* the most networked devices after 30 seconds wins; they are allowed to get devices from their bags, get out of their chairs and so on. **TIP:** This is particularly effective (and manic!) if you have a 30 second music clip and they have to freeze when the music stops.
+1. Ask the groups to circle any of the devices on their list that they have used since they got up this morning. They have one minute to do this.
 
-4. Ask each group for one device they have chosen and briefly discuss them. Add a few not so obvious ones such as bank ATMs and speed cameras. Emphasise that the modern world relies on computer networks and they will now build their own.
+1. The group *touching* the most networked devices after 30 seconds wins; they are allowed to get devices from their bags, get out of their chairs and so on. **TIP:** This is particularly effective (and manic!) if you have a 30 second music clip and they have to freeze when the music stops.
+
+1. Ask each group for one device they have chosen and briefly discuss them. Add a few not so obvious ones such as bank ATMs and speed cameras. Emphasise that the modern world relies on computer networks and they will now build their own.
 
 ## Main development
 
@@ -59,7 +57,7 @@ The concepts that the students learned from the homework will be used and consol
 
 1. Students should set up the network and send messages using the [Student Instructions](student-instructions-1.md).
 
-2 *Optional*: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the student instructions.
+1. *Optional*: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the student instructions.
 
 ## Plenary
 
@@ -73,6 +71,3 @@ Write the following list of words on the board:
 - LAN
 
 Select a student randomly from the class. They must select one of the words/terms from the board, stand up and point to someone else in the class who must then explain what the word means. That person then chooses the next person to explain one of the terms.
-
-
-

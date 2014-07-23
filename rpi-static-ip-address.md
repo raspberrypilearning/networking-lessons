@@ -6,21 +6,19 @@ Sometimes, however, you might want your Pi to boot up with the same IP address e
 
 ## Setup
 
-Edit the file `/etc/network/interfaces` as follows: 
+Edit the file `/etc/network/interfaces` as follows:
 
 1. Type `sudo nano /etc/network/interfaces` at the command prompt.
 
-2. Look for the line:
+1. Look for the line:
 
- 
-
-    ```
+    ```bash
     iface eth0 inet dhcp
     ```
 
-3. Change the word `dhcp` to `static`.
+1. Change the word `dhcp` to `static`.
 
-4. Press `Enter` and add the following lines:
+1. Press `Enter` and add the following lines:
 
     ```
     address 192.168.0.2
@@ -30,7 +28,7 @@ Edit the file `/etc/network/interfaces` as follows:
     gateway 192.168.0.1
     ```
 
-5. Save the file with `CTRL + O` and then exit nano with `CTRL + X`.
+1. Save the file with `CTRL + O` and then exit nano with `CTRL + X`.
 
 Your Raspberry Pi will now boot up with the IP address `192.168.0.2` every time; we didn't use `192.168.0.1` as this is reserved for the router. You can of course use any address you like, but in the configuration above the range must be between `192.168.0.2` and `192.168.0.255`.
 
@@ -38,9 +36,9 @@ Your Raspberry Pi will now boot up with the IP address `192.168.0.2` every time;
 
 1. Reboot with `sudo reboot`.
 
-2. Log in and type `ip a`.
+1. Log in and type `ip a`.
 
-3. You should see the IP address you set in the `eth0:` entry.
+1. You should see the IP address you set in the `eth0:` entry.
 
 ## Troubleshooting
 
@@ -48,22 +46,21 @@ If your Pi is not networked then the IP address may not show. To fix this, conne
 
 If you still cannot see your IP address, or it is different to the one you set, then open the `interfaces` file, as described in step 1 of Setup, and check that your edits are correct.
 
-##Clean up - reverting the changes
+## Clean up - reverting the changes
 
 Normally you don't want your computer set to use a static IP address. You can change the network configuration back by editing the `interfaces` file as follows:
 
 1. Type `sudo nano /etc/network/interfaces` at the command prompt.
 
-2. Look for the line:
-
+1. Look for the line:
 
     ```
     iface eth0 inet static
     ```
 
-3. Change the word `static` to `dhcp`.
+1. Change the word `static` to `dhcp`.
 
-4. Comment out the following lines by putting a `#` in front (you can delete them entirely but you may want them again later):
+1. Comment out the following lines by putting a `#` in front (you can delete them entirely but you may want them again later):
 
     ```
     #address 192.168.0.2
@@ -72,4 +69,4 @@ Normally you don't want your computer set to use a static IP address. You can ch
     #broadcast 192.168.0.255
     #gateway 192.168.0.1
     ```
-5. Save the file with `CTRL + O`, exit nano with `CTRL + X`  and then reboot with `sudo reboot'.
+1. Save the file with `CTRL + O`, exit nano with `CTRL + X`  and then reboot with `sudo reboot'.

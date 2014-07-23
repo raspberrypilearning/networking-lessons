@@ -117,7 +117,7 @@ Firstly, select one Raspberry Pi to act as the DHCP server. It can be a good ide
 
 Enter the following commands:
 
-```
+```bash
 sudo apt-get update
 sudo apt-get install dnsmasq
 ```
@@ -128,11 +128,15 @@ By convention, most DHCP servers have a static IP address which will be the firs
 
 So first, let’s make the DHCP server Raspberry Pi have a static IP address as per this convention. To configure this we must edit the network interfaces file again. Enter the following command:
 
-`sudo nano /etc/network/interfaces`
+```bash
+sudo nano /etc/network/interfaces
+```
 
 In this file `eth0` refers to the Raspberry Pi Ethernet port and `wlan0` refers to a wireless dongle if you are using one. Find the following line:
 
-`iface eth0 inet dhcp`
+```bash
+iface eth0 inet dhcp
+```
 
 This line tells the Raspberry Pi to try and get an IP address from a DHCP server for the interface `eth0`. So essentially this is making it a DHCP *client*, but we want to make this a DHCP *server* so this line must be disabled. Put a hash `#` character at the start of the line and add the following four lines below to configure the static IP address, just as you did in previous exercises:
 
@@ -146,13 +150,15 @@ netmask 255.255.255.0
 
 Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano.  Now enter the following command to restart the networking service on the Raspberry Pi:
 
-`sudo service networking restart`
+```bash
+sudo service networking restart
+```
 
 This Raspberry Pi will now always have the IP address `192.168.0.1`. You can double-check this by entering the command `ifconfig`; the IP address should be shown on the second line just after `inet addr`.
 
 Next we need to configure the DHCP server software, `dnsmasq`, that was installed earlier. We are going to explicitly specify a configuration file for the `dnsmasq` service, so let’s first make a backup of the default config file and then save our one in its place. Enter the following commands:
 
-```
+```bash
 cd /etc
 sudo mv dnsmasq.conf dnsmasq.default
 sudo nano dnsmasq.conf
@@ -169,7 +175,9 @@ The first line tells `dnsmasq` to listen for DHCP requests on the Ethernet port 
 
 Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano. Before we activate the server, make sure the DHCP server Pi is the only device connected to the practice hub/switch; unplug all other Ethernet connections. Enter the following command to restart the `dnsmasq` service:
 
-`sudo service dnsmasq restart`
+```bash
+sudo service dnsmasq restart
+```
 
 The DHCP service is now active and listening for requests from client host computers.
 
@@ -177,7 +185,9 @@ The DHCP service is now active and listening for requests from client host compu
 
 Before reconnecting any remaining client Pis to the hub/switch, check that their `/etc/network/interfaces` files are configured to get an IP address from a DHCP server. Enter the following command:
 
-`sudo nano /etc/network/interfaces`
+```bash
+sudo nano /etc/network/interfaces
+```
 
 Ensure that a static IP address is *not* specified and check the `iface eth0 inet dhcp` line is there; an example is below.
 
@@ -205,7 +215,9 @@ If you want to take it one step further and observe the communication between th
 
 Firstly, to shut down the Ethernet interface and give back your IP address to the DHCP server enter this command:
 
-`sudo ifdown eth0`
+```bash
+sudo ifdown eth0
+```
 
 You should see output similar to the text below. Note the `DHCPRELEASE` line; this is the IP address being surrendered to the server.
 
@@ -218,7 +230,9 @@ DHCPRELEASE on eth0 to 192.168.0.1 port 67
 
 Next, use the following command to start up the Ethernet interface and get an IP address from the DHCP server:
 
-`sudo ifup eth0`
+```bash
+sudo ifup eth0
+```
 
 You should see output similar to the text below. Note the `DHCPDISCOVER`, `DHCPREQUEST`, `DHCPOFFER`, and `DHCPACK` lines. See how they correspond to what was being spoken during the starter activity?
 
@@ -249,4 +263,4 @@ Take another look at the `ifup` and `ifdown` command output from earlier!
 
 ## Homework
 
-Homework will be an open challenge to find a device in the school or family home that has an in -built DHCP server. Write 100 words about why this DHCP server is being used in this place.
+Homework will be an open challenge to find a device in the school or family home that has a built-in DHCP server. Write 100 words about why this DHCP server is being used in this place.
