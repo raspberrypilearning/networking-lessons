@@ -1,12 +1,12 @@
 #Controlling physical devices across a network on two Raspberry Pis: Student worksheet
 
-There are three steps to setting up the Raspberry Pis so one can control the other: configuring the network, writing the server program, and setting up the hardware. 
+There are three steps to setting up the Raspberry Pis so one can control the other: configuring the network, writing the server program, and setting up the hardware.
 
 ##Network configuration
 
 Before the Raspberry Pis can communicate they need to be connected together via a network. Normally, when a device connects to a network, it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis we have to give each Pi its own IP address.
 
-1. [Follow this guide](..\Lesson-1\RPi-static-ip-address.md) to configure the IP address.
+1. [Follow this guide](../rpi-static-ip-address.md) to configure the IP address.
 
 2. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`.
 
@@ -17,7 +17,7 @@ Before the Raspberry Pis can communicate they need to be connected together via 
 
 1. Connect the two Pis with an Ethernet cable
 2. On the Pi that has the IP address ending `.02`, type:
-    
+
     `ping 192.168.0.3 -c5`
 
 You should see something like this:
@@ -40,7 +40,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 1. Create a new file with the nano editor by typing `nano thing-server.py`.
 2. Type in the following program:
 
-```python    
+```python
 import RPi.GPIO as GPIO
 import time
 import network
@@ -76,24 +76,23 @@ while True:
 
 ##Setting up the hardware
 
-**Important**: do not connect hardware directly to the pins! Use female header wires that you can plug onto the GPIO pins and your hardware. 
+**Important**: do not connect hardware directly to the pins! Use female header wires that you can plug onto the GPIO pins and your hardware.
 
 ###1. Set up the client machine with an LED
 
-![](client-LED-setup.png)
+![](images/client-led-setup.png)
 
 ###2. Set up the server with a button
 
 Note: you do not need a button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or similar. Again, use header wires that protect the GPIO pins.
 
-![](server-button-setup.png)
-
+![](images/server-button-setup.png)
 
 ##Running the program
 
 The **server** machine is connected to a button. It monitors data from the client machine, and when it receives a '?' character it sends back a '1' if the button is pressed and a '0' if it is not.
 
-The **client** machine is connected to an LED. It sends a '?' character every second to the server, and if it gets back a '1' in reply it turns the LED on. 
+The **client** machine is connected to an LED. It sends a '?' character every second to the server, and if it gets back a '1' in reply it turns the LED on.
 
 4. Set the first Pi up as a **server** by typing:
 
@@ -105,13 +104,13 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 
 6. You should now be able to press the button on the Raspberry Pi connected to the server, and the LED will flash on the client. Try it out!
 
-###Things to think about: 
+###Things to think about:
 
 - What is happening, physically and electrically, when you press the button?
 - What happens at the other end, electrically, when the server receives a signal?
 
 
-###Things to try: 
+###Things to try:
 
 - Can you break the program by pressing the button too fast?
 - Try to change the frequency of the client requests (the '?' character). What happens if they get sent too fast?
@@ -128,4 +127,4 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 
 #Cleanup
 
-If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [the guide](RPi-static-ip-address.md).
+If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [the guide](rpi-static-ip-address.md).

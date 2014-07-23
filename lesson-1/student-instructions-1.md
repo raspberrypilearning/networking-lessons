@@ -2,13 +2,13 @@
 
 ##Student worksheet
 
-There are two steps to setting up the Raspberry Pis so you can send chat messages to each other: configuring the network and writing the program. 
+There are two steps to setting up the Raspberry Pis so you can send chat messages to each other: configuring the network and writing the program.
 
 ##Network configuration
 
 Before the Raspberry Pis can communicate they need to be connected together via a network. Normally, when a device connects to a network, it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis, we have to give each Pi its own IP address.
 
-1. [Follow this guide](RPi-static-ip-address.md) to configure the IP address.
+1. [Follow this guide](../rpi-static-ip-address.md) to configure the IP address.
 
 2. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`.
 
@@ -19,7 +19,7 @@ Before the Raspberry Pis can communicate they need to be connected together via 
 
 1. Connect the two Pis with an Ethernet cable
 2. On the Pi that has the IP address ending `.02`, type:
-    
+
     `ping 192.168.0.3 -c5`
 
 You should see something like this:
@@ -42,20 +42,20 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 1. Create a new file with the nano editor by typing `nano chat.py`.
 2. Type in the following program:
 
-    ```python    
+    ```python
     # A simple internet-chat application
-    
+
     import network
     import sys
-    
+
     def heard(phrase):
       print("them:" + phrase)
-    
+
     if (len(sys.argv) >= 2):
       network.call(sys.argv[1], whenHearCall=heard)
     else:  
       network.wait(whenHearCall=heard)
-    
+
     while network.isConnected():
       #phrase = raw_input() #python2
       phrase = input() # python3
@@ -75,16 +75,16 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
 6. You should now be able to type messages on either Pi, and they will appear on the other screen when you press the `enter` key.
 
-Try it! Send messages from the server to the client and vice versa. 
+Try it! Send messages from the server to the client and vice versa.
 
-###Things to think about when sending messages: 
+###Things to think about when sending messages:
 
 - What is happening on screen?
 - What is physically happening to the messages when you press the `enter` key?
 - How do the messages know where to go?
 
 
-###Things to try: 
+###Things to try:
 
 - Can you break the program by sending messages too fast or at the same time?
 - What happens if you stop the server program by pressing `CTRL-C`?

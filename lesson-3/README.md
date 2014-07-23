@@ -2,13 +2,13 @@
 
 This learning resource describes a practical exercise where the Raspberry Pi is used to demonstrate Dynamic Host Configuration Protocol on an isolated network.
 
-![](./images/cover.jpg)
+![](images/cover.jpg)
 
 ## Introduction
 
 By now it will be clear that repeatedly changing the `/etc/network/interfaces` file is time-consuming and laborious. There are a number of disadvantages to giving static IP addresses to all computers on the network. Consider what would happen when you want to add even more computers to your network.
 
-- Users must manually allocate IP addresses 
+- Users must manually allocate IP addresses
 - Users must ensure that no two computers have the same address
 - It is time-consuming to edit the configuration file on every computer
 - It is not ideal for mobile devices like laptops, which frequently join and leave the network
@@ -75,7 +75,7 @@ The DHCP server has a set of rules that must be followed; this is the protocol p
 - DHCP: "Yes I am here, *Dave*. I can offer you address X."
 - HOST: "DHCP server, can I take address X please."
 - DHCP: "*Dave*, here is address X. You may keep it for 12 hours."
-  
+
 The DHCP server hands over an address card to *Dave* and writes his name on the paper, along with the address that was given, the time *when* it was given, and the length of the lease (12 hours). The time it was given is used to keep track of the age of the lease.
 
 Stop for a moment and consider if there was any part of this conversation that was unexpected. When a computer joins a network it has no way of knowing if a DHCP server is available, so it sends out a broadcast signal to the whole network asking if one is there. If one *is* available it will reply to the host offering an address; the host then officially requests the address. The part you might not have expected is that the address is given with a lease time, in this case 12 hours. Consider why this might be and continue below.
@@ -100,7 +100,7 @@ The DHCP server makes a new card with that address on, hands it to *Fred*, cross
 
 So that is how this problem is dealt with; all addresses are given out with a time limit attached to them so that in the event of hosts crashing or suddenly leaving the network, the DHCP server will slowly repossess those addresses as their lease times expire.
 
-An alternative version of this conversation might be: 
+An alternative version of this conversation might be:
 
 - HOST: "DHCP server I am *Dave*, 12 hours have gone by so can I renew address X please?"
 - DHCP: *Dave* you may keep the address for another 12 hours.
@@ -171,7 +171,7 @@ Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano. B
 
 `sudo service dnsmasq restart`
 
-The DHCP service is now active and listening for requests from client host computers. 
+The DHCP service is now active and listening for requests from client host computers.
 
 ### On all the remaining client Pis
 

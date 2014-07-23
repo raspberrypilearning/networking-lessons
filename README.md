@@ -1,6 +1,6 @@
 # Networking
 
-![Networked Raspberry Pi](pi-network.jpg)
+![Networked Raspberry Pi](images/pi-network.jpg)
 
 ## Introduction
 
@@ -8,7 +8,7 @@ This scheme of work has been designed as an introduction to networking on the Ra
 
 This scheme of work is specifically targeted towards KS3 and KS4 Computing, although the first two lessons could be used at KS2. It has been developed in the context of the 2014 National Curriculum in England, but is not specific to that programme.
 
-##Learning outcomes:
+## Learning outcomes:
 
 Over the course of four lessons, students will learn:
 
@@ -22,13 +22,13 @@ Over the course of four lessons, students will learn:
 	- DHCP
 	- DNS
 
-##Links to Computing Programme of Study
+## Links to Computing Programme of Study
 
-###KS2:
+### KS2:
 
 - Understand computer networks including the internet
 
-###KS3:
+### KS3:
 
 - Understand the hardware and software components that make up computer systems, and how they communicate with one another and with other systems.
 
@@ -36,7 +36,7 @@ The lessons use the Python programming language and therefore also address sever
 
 [National Curriculum Computing Programmes of Study](https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study#key-stage-3)
 
-##Resources
+## Resources
 
 It is suggested that work is carried out by students on a Raspberry Pi each or in pairs. Each Raspberry Pi will connect to one other Pi in the first lessons so you will need an even number. Each student or pair should have access to the following equipment:
 
@@ -49,9 +49,10 @@ It is suggested that work is carried out by students on a Raspberry Pi each or i
 
 See the [teacher setup instructions](teacher-instructions.md) for more information.
 
-##Lessons
+## Lessons
 
-- [Lesson 1: Sending messages over a network](lesson-1/README.md) (Note that this lesson requires students to prepare by watching a video beforehand; this can be set as homework from the provious lesson or incorporated where appropriate).
+- [Lesson 1: Sending messages over a network](lesson-1/README.md)
+	- (Note that this lesson requires students to prepare by watching a video beforehand; this can be set as homework from the provious lesson or incorporated where appropriate).
 - [Lesson 2: Controlling hardware over a network](lesson-2/README.md)
 - [Lesson 3: Dynamic Host Configuration Protocol (DHCP)](lesson-3/README.md)
 - [Lesson 4: DNS (Domain Name System)](lesson-4/README.md)

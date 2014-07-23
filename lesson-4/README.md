@@ -2,11 +2,11 @@
 
 This learning resource describes a practical exercise where the Raspberry Pi is used to demonstrate the Domain Name System (DNS) on an isolated network.
 
-![](./images/cover.jpg)
+![](images/cover.jpg)
 
 ## Introduction
 
-It is recommended that the previous [DHCP lesson](../DHCP%20(Dynamic%20Host%20Configuration%20Protocol)/) has been completed by all students before attempting this. It is important to complete them in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
+It is recommended that the previous [DHCP lesson](../lesson-3/README.md) has been completed by all students before attempting this. It is important to complete them in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
 
 You may have noticed that it can be a bit tricky to remember IP addresses. They are comprised of four 8-bit numbers separated by dots; for example, `192.168.0.146`. Human beings often find it difficult to remember a sequence of numbers like this, and find it a lot easier to remember a word or a name instead.
 
@@ -43,7 +43,7 @@ For the majority of the lesson, it is suggested that work is carried out by stud
 You will need:
 
 - The DHCP server Raspberry Pi from the previous lesson
-- One or more Raspberry Pis with a [web server](https://github.com/raspberrypi/documentation/blob/master/remote-access/web-server/apache.md) running (optional) 
+- One or more Raspberry Pis with a [web server](https://github.com/raspberrypi/documentation/blob/master/remote-access/web-server/apache.md) running (optional)
 - A Raspberry Pi per pair of students
 - An Ethernet cable per pair
 - NOOBS SD card with Raspbian installed per pair
@@ -223,7 +223,7 @@ Add that MAC address into the following line of the `dnsmasq` configuration file
 dhcp-host=b8:27:eb:aa:bb:cc,192.168.0.20
 ```
 
-Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano. 
+Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano.
 
 Now we just need to choose a name for the web server and add it into the `hosts.dnsmasq` file:
 
