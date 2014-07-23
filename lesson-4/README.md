@@ -43,7 +43,7 @@ For the majority of the lesson, it is suggested that work is carried out by stud
 You will need:
 
 - The DHCP server Raspberry Pi from the previous lesson
-- One or more Raspberry Pis with a [web server](https://github.com/raspberrypi/documentation/blob/master/remote-access/web-server/apache.md) running (optional)
+- One or more Raspberry Pis with a [web server](http://www.raspberrypi.org/documentation/remote-access/web-server/apache.md) running (optional)
 - A Raspberry Pi per pair of students
 - An Ethernet cable per pair
 - NOOBS SD card with Raspbian installed per pair
@@ -201,7 +201,7 @@ You should find that everyone can enter the command `ping serverpi` and get a re
 
 ### One step further: the web server!
 
-Assuming you're using one or more Raspberry Pi [web servers](https://github.com/raspberrypi/documentation/blob/master/remote-access/web-server/apache.md), it would be great to get to the point where you can type a name into a browser and see a home page load. This is the next task!
+Assuming you're using one or more Raspberry Pi [web servers](http://www.raspberrypi.org/documentation/remote-access/web-server/apache.md), it would be great to get to the point where you can type a name into a browser and see a home page load. This is the next task!
 
 Before we change anything, we need to consider the problem of DHCP IP address allocations changing and becoming out of sync with the DNS server lookup table. This was touched on in the starter activity.
 
