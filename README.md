@@ -51,10 +51,10 @@ See the [teacher setup instructions](teacher-instructions.md) for more informati
 
 ##Lessons
 
-- [Lesson 1: Sending messages over a network](Lesson-1/lesson-plan-1.md) (Note that this lesson requires students to prepare by watching a video beforehand; this can be set as homework from the provious lesson or incorporated where appropriate).
-- [Lesson 2: Controlling hardware over a network](Lesson-2/lesson-plan-2.md)
-- [Lesson 3: Dynamic Host Configuration Protocol (DHCP)](./DHCP%20(Dynamic%20Host%20Configuration%20Protocol))
-- [Lesson 4: DNS (Domain Name System)](./DNS%20(Domain%20Name%20System))
+- [Lesson 1: Sending messages over a network](lesson-1/README.md) (Note that this lesson requires students to prepare by watching a video beforehand; this can be set as homework from the provious lesson or incorporated where appropriate).
+- [Lesson 2: Controlling hardware over a network](lesson-2/README.md)
+- [Lesson 3: Dynamic Host Configuration Protocol (DHCP)](lesson-3/README.md)
+- [Lesson 4: DNS (Domain Name System)](./lesson-4/README.md))
 
 ## Licence
 
@@ -66,4 +66,3 @@ Unless otherwise specified, everything in this repository is covered by the foll
 
 Based on a work at https://github.com/raspberrypilearning/networking-lessons
 Lessons 1 and 2 based on ideas and code by @whaleygeek
-
