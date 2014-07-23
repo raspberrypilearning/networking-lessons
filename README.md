@@ -54,7 +54,7 @@ See the [teacher setup instructions](teacher-instructions.md) for more informati
 - [Lesson 1: Sending messages over a network](lesson-1/README.md) (Note that this lesson requires students to prepare by watching a video beforehand; this can be set as homework from the provious lesson or incorporated where appropriate).
 - [Lesson 2: Controlling hardware over a network](lesson-2/README.md)
 - [Lesson 3: Dynamic Host Configuration Protocol (DHCP)](lesson-3/README.md)
-- [Lesson 4: DNS (Domain Name System)](./lesson-4/README.md))
+- [Lesson 4: DNS (Domain Name System)](lesson-4/README.md)
 
 ## Licence
 
