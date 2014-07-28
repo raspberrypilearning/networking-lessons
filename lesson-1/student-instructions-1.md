@@ -104,4 +104,4 @@ Try it! Send messages from the server to the client and vice versa.
 
 ## Cleanup
 
-If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [the guide](rpi-static-ip-address.md).
+If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [the guide](../rpi-static-ip-address.md).
