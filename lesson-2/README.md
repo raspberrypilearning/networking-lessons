@@ -1,6 +1,6 @@
 # Lesson 2 - The Internet of Things: how do computers control other computers?
 
-By 2020 there will be [50bn things](http://share.cisco.com/internet-of-things.html) connected to the internet, from cows to fridges to cars. This is known as the Internet of Things. In this lesson students will build the simplest Thing - a button that lights an LED across a network.
+By 2020 there will be [50bn things] connected to the internet, from cows to fridges to cars. This is known as the Internet of Things. In this lesson students will build the simplest Thing - a button that lights an LED across a network.
 
 Students will be aware of how widespread and important networks are from lesson 1. They should be comfortable with terms used in that lesson, such as IP address, server, and client. The plenary could be used as a refresher.
 
@@ -54,3 +54,6 @@ Ask each group to stand up and explain what changes they made to their program a
 1. Show students the source of the "[50bn things]" quote.
 1. Ask them to research and prepare a speed talk (1 minute) for next lesson, either arguing that the IoT is a good thing or a bad thing (no fence sitting!). If they want to use slides they should be pictures only, no words.
 1. Next lesson pick several at "random" to stand up and give their talk, giving equal time to each side of the argument. The class votes on which wins.
+
+
+[50bn things]: http://share.cisco.com/internet-of-things.html
