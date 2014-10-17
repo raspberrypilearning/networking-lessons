@@ -9,3 +9,5 @@ Unless otherwise specified, everything in this repository is covered by the foll
 Based on a work at https://github.com/raspberrypilearning/networking-lessons
 
 Lessons 1 and 2 based on ideas and code by [David Whale](https://twitter.com/whaleygeek)
+
+GPIO diagrams provided under CC BY SA from [Fritzing](http://fritzing.org/home/).
