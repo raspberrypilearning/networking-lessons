@@ -15,7 +15,7 @@ For this scheme of work students will need access to:
 
 ## Downloading and installing NOOBS
 
-Instructions for best practice on [downloading and installing NOOBS can be read here](http://www.raspberrypi.org/documentation/installation/noobs.md).
+Instructions for best practice on [downloading and installing NOOBS can be read here](http://www.raspberrypi.org/help/noobs-setup/).
 
 ## Downloading network.py
 
