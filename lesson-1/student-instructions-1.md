@@ -17,7 +17,7 @@ Before the Raspberry Pis can communicate they need to be connected together via 
 ### Testing your network
 
 1. Connect the two Pis with an Ethernet cable
-1. On the Pi that has the IP address ending `.02`, type:
+1. On the Pi that has the IP address ending `.2`, type:
 
     ```bash
     ping 192.168.0.3 -c5
