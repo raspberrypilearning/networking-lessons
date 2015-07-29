@@ -100,7 +100,7 @@ The **client** machine is connected to an LED. It sends a '?' character every se
     python thing-server.py
     ```
 
-1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to the Raspberry Pi that has the IP address ending in `.2.`, type:
+1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to the Raspberry Pi that has the IP address ending in `.2`, type:
 
     ```bash
     python thing-client.py 192.168.0.2
