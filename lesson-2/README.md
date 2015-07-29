@@ -51,6 +51,6 @@ Ask each group to stand up and explain what changes they made to their program a
 
 ## Homework
 
-1. Show students the source of the "[50bn things](http://share.cisco.com/internet-of-things.html)" quote.
+1. Show students the source of the "[50bn things](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342)" quote.
 1. Ask them to research and prepare a speed talk (1 minute) for next lesson, either arguing that the IoT is a good thing or a bad thing (no fence sitting!). If they want to use slides they should be pictures only, no words.
 1. Next lesson pick several at "random" to stand up and give their talk, giving equal time to each side of the argument. The class votes on which wins.
