@@ -1,2 +1,7 @@
 title: Networking Lessons
 category: teach
+Lessons:
+  1: How do computers communicate? 
+  2: The Internet of Things: how do computers control other computers? 
+  3: Dynamic Host Configuration Protocol (DHCP)
+  4: Domain Name System (DNS)
