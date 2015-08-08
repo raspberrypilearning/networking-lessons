@@ -1,4 +1,4 @@
-# Networking
+# Networking Lesson
 
 ![Networked Raspberry Pi](images/pi-network.jpg)
 
