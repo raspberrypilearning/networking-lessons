@@ -51,11 +51,11 @@ See the [teacher setup instructions](lesson-1/teacher-instructions.md) for more 
 
 ## Lessons
 
-- [Lesson 1: Sending messages over a network](lesson-1/lesson.md)
+- [Lesson 1: How do computers communicate?](lesson-1/lesson.md)
 	- (Note that this lesson requires students to prepare by watching a video beforehand; this can be set as homework from the previous lesson or incorporated where appropriate).
-- [Lesson 2: Controlling hardware over a network](lesson-2/lesson.md)
+- [Lesson 2: The Internet of Things: How do computers control other computers?](lesson-2/lesson.md)
 - [Lesson 3: Dynamic Host Configuration Protocol (DHCP)](lesson-3/lesson.md)
-- [Lesson 4: DNS (Domain Name System)](lesson-4/lesson.md)
+- [Lesson 4: Domain Name System (DNS)](lesson-4/lesson.md)
 
 ## Licence
 
