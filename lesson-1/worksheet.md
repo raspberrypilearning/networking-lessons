@@ -2,7 +2,7 @@
 
 ## Student worksheet
 
-There are two steps to setting up the Raspberry Pis so you can send chat messages to each other: configuring the network and writing the program.
+In this lesson, you will set up two Raspberry Pis to form a network, and use Python code to send messages between them. There are two steps this: configuring the network and writing the program.
 
 ## Network configuration
 
