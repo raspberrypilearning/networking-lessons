@@ -5,5 +5,5 @@
   img: led
   url: http://shop.pimoroni.com/products/led-5mm-pack-of-10
 - name: 1 x Network cable for each pair of Raspberry Pis
-  img: 
+  img: ethernet-cable
   url: http://shop.pimoroni.com/products/cat5e-utp-ethernet-cable
