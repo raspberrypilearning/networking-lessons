@@ -1,4 +1,4 @@
-# Controlling physical devices across a network on two Raspberry Pis: Student worksheet
+# Lesson 2 - Controlling physical devices across a network on two Raspberry Pis
 
 There are three steps to setting up the Raspberry Pis so one can control the other: configuring the network, writing the server program, and setting up the hardware.
 
