@@ -51,7 +51,7 @@ This starter is a quick-fire "ideas" round to introduce students to the ubiquity
 
 The concepts that the students learned from the homework will be used and consolidated as they complete the tasks.
 
-1. Students should set up the network and send messages using the [Student Worksheet](student-instructions-1.md).
+1. Students should set up the network and send messages using the [Student Worksheet](worksheet.md).
 
 1. **Optional**: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the student worksheet.
 
