@@ -44,7 +44,7 @@ Your Raspberry Pi will now boot up with the IP address `192.168.0.2` every time;
 
 If your Pi is not networked then the IP address may not show. To fix this, connect your Pi to an active network socket, which can be on another running Raspberry Pi; you can also manually bring up (activate) the network interface by typing `sudo ifup eth0` followed by `ip a`.
 
-If you still cannot see your IP address, or it is different to the one you set, then open the `interfaces` file, as described in step 1 of Setup, and check that your edits are correct.
+If you still cannot see your IP address, or it is different to the one you set, then open the `interfaces` file, as described in step 1 of the setup instructions, and check that your edits are correct.
 
 ## Clean up - reverting the changes
 
