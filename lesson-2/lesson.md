@@ -27,7 +27,7 @@ Students will be aware of how widespread and important networks are from lesson 
 ## Lesson summary
 
 - Introduction to physical, networked computing
-- Extends Lesson 1 but controls hardware on the client machine instead of screen messaging
+- Extends Lesson 1: controls hardware on the client machine instead of screen messaging
 - Control another Raspberry Pi's GPIO pins over a network
 
 ## Starter
