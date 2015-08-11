@@ -1,6 +1,6 @@
 # Domain Name System (DNS)
 
-In this lesson, the students will use the Raspberry Pi to learn about the Domain Name System (DNS) on an isolated network. It is recommended that the previous [DHCP lesson](lesson-3/plan.md) has been completed by all students before attempting this. It is important to complete them in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
+In this lesson, the students will use the Raspberry Pi to learn about the Domain Name System (DNS) on an isolated network. It is recommended that the previous [DHCP lesson](/lesson-3/plan.md) has been completed by all students before attempting this. It is important to complete them in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
 
 You may have noticed that it can be a bit tricky to remember IP addresses. They are comprised of four 8-bit numbers separated by dots; for example, `192.168.0.146`. Human beings often find it difficult to remember a sequence of numbers like this, and find it a lot easier to remember a word or a name instead.
 
