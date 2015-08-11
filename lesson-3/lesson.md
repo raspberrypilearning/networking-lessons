@@ -13,6 +13,8 @@ By now it will be clear that repeatedly changing the `/etc/network/interfaces` f
 
 How can we make this easier?
 
+For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated, without any Ethernet cables connecting it into the main school network.
+
 ## Learning objectives
 
 - Understand what Dynamic Host Configuration Protocol (DHCP) is
@@ -35,8 +37,6 @@ How can we make this easier?
 - Setting up one Raspberry Pi to be a DHCP server
 - Use other Raspberry Pis to get IP addresses from the server
 - Testing the network
-
-For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated, without any Ethernet cables connecting it into the main school network.
 
 ## Lesson introduction
 
