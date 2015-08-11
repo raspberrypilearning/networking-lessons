@@ -98,7 +98,7 @@ Firstly, select one Raspberry Pi to act as the DHCP server. It can be a good ide
 
 ### On the server Pi only
 
-**Note:** Because only one Raspberry Pi will be the DHCP server, this part of the activity is best carried out by one person with all the other students observing. We do not need more than one DHCP server; in fact more than one can cause problems!
+**Note:** Because only one Raspberry Pi will be the DHCP server, this part of the activity is best carried out by one person with all the other students observing. We do not need more than one DHCP server; in fact, more than one can cause problems!
 
 Enter the following commands:
 
