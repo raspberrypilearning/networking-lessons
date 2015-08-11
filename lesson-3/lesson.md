@@ -123,7 +123,7 @@ In this file `eth0` refers to the Raspberry Pi Ethernet port and `wlan0` refers 
 iface eth0 inet dhcp
 ```
 
-This line tells the Raspberry Pi to try and get an IP address from a DHCP server for the interface `eth0`. So essentially this is making it a DHCP *client*, but we want to make this a DHCP *server* so this line must be disabled. Put a hash `#` character at the start of the line and add the following four lines below to configure the static IP address, just as you did in previous exercises:
+This line tells the Raspberry Pi to try and get an IP address from a DHCP server for the interface `eth0`. So essentially this is making it a DHCP **client**, but we want to make this a DHCP **server** so this line must be disabled. Put a hash `#` character at the start of the line and add the following four lines below to configure the static IP address, just as you did in previous exercises:
 
 ```
 # iface eth0 inet dhcp
@@ -174,7 +174,7 @@ Before reconnecting any remaining client Pis to the hub/switch, check that their
 sudo nano /etc/network/interfaces
 ```
 
-Ensure that a static IP address is *not* specified and check the `iface eth0 inet dhcp` line is there; an example is below.
+Ensure that a static IP address is **not** specified and check the `iface eth0 inet dhcp` line is there; an example is below.
 
 ```
 iface eth0 inet dhcp
@@ -196,9 +196,9 @@ Once everyone has an IP address the network should work as expected. Test it usi
 
 ### One step further
 
-If you want to take it one step further and observe the communication between the DHCP server and the clients, the following commands can be used *on the client Pis*.
+If you want to take it one step further and observe the communication between the DHCP server and the clients, the following commands can be used on the **client** Pis.
 
-Firstly, to shut down the Ethernet interface and give back your IP address to the DHCP server enter this command:
+Firstly, to shut down the Ethernet interface and give back your IP address to the DHCP server, enter this command:
 
 ```bash
 sudo ifdown eth0
@@ -238,9 +238,9 @@ In normal practice you don’t need to keep using these commands because the sam
 
 Students can now be invited to discuss similarities in the practical exercise to the starter activity.
 
-One question that should be brought up is how the DHCP server can identify each computer that talks to it. In the starter activity the client host computer said “I am Dave” to the DHCP server *before* it had been given an IP address. The DHCP server then wrote *Dave* on the piece of paper against the IP address that was given. What is the equivalent of this for a real computer?
+One question that should be brought up is how the DHCP server can identify each computer that talks to it. In the starter activity the client host computer said “I am Dave” to the DHCP server **before** it had been given an IP address. The DHCP server then wrote **Dave** on the piece of paper against the IP address that was given. What is the equivalent of this for a real computer?
 
-The answer is the *MAC* address (sometimes called the physical address). MAC stands for Media Access Control; it is a unique ID that is burnt into the hardware of an Ethernet device by the manufacturer. All network devices, including those using WiFi and Bluetooth, have a MAC. A MAC address is six bytes long and is often shown as six hexadecimal numbers separated by colons or dashes like this: `01:23:45:67:89:ab`.
+The answer is the **MAC** address (sometimes called the physical address). MAC stands for Media Access Control; it is a unique ID that is burnt into the hardware of an Ethernet device by the manufacturer. All network devices, including those using WiFi and Bluetooth, have a MAC. A MAC address is six bytes long and is often shown as six hexadecimal numbers separated by colons or dashes like this: `01:23:45:67:89:ab`.
 
 The MAC address of a Raspberry Pi can be shown using the `ifconfig` command; look under `eth0` and on the first line just after `HWaddr` (hardware address). The MAC address will be something like `b8:27:eb:aa:bb:cc`. A Raspberry Pi MAC address always starts with `b8:27:eb`. So it’s actually the MAC address of the client host computer that the DHCP server stores to keep a record of who owns which IP address.
 
