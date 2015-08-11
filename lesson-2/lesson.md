@@ -34,7 +34,7 @@ Students will be aware of how widespread and important networks are from lesson 
 
 This can be done on paper or as drag and drop on an interactive whiteboard.
 
-1. Students have one minute to rearrange the Python code on the [Lesson 2 code review](code-review.md) into the correct order.
+1. Students have one minute to rearrange the Python code on the [code review](code-review.md) into the correct order.
 1. Show the program running. Discuss what goes where and why, e.g. importing modules, functions, while loops etc.
 1. Show video of PA's [Raspberry Pi competition](https://www.youtube.com/watch?v=x_-ngDlclw0) for schools and explain that all of the projects rely on a server controlling some physical aspect of a Raspberry Pi e.g. sensors, displays, pumps, camera etc.
 
@@ -43,7 +43,7 @@ This can be done on paper or as drag and drop on an interactive whiteboard.
 1. Explain that the students will connect two Raspberry Pis in a similar way to lesson 1, but this time they will control hardware instead of sending text.
 1. Students should set up the network and control LEDs on another Pi using the [Student Worksheet](worksheet.md).
 1. Extension ideas: add screen messages for feedback, change how the LED flashes, change the physical button (e.g. a "pressure pad" made out of foil), add another LED (advanced).
-1. *Optional*: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the student instructions.
+1. *Optional*: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the Static IP address guide given in the previous lesson.
 
 ## Plenary
 
