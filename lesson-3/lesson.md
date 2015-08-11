@@ -1,8 +1,6 @@
 #Dynamic Host Configuration Protocol (DHCP)
 
-This learning resource describes a practical exercise where the Raspberry Pi is used to demonstrate Dynamic Host Configuration Protocol on an isolated network.
-
-![](images/cover.jpg)
+In this lesson, students will learn how the Raspberry Pi can be used to demonstrate Dynamic Host Configuration Protocol on an isolated network.
 
 ## Introduction
 
@@ -38,30 +36,17 @@ How can we make this easier?
 - Use other Raspberry Pis to get IP addresses from the server
 - Testing the network
 
-## Resources
-
 For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated, without any Ethernet cables connecting it into the main school network.
-
-You will need:
-
-- A Raspberry Pi per pair of students
-- An Ethernet cable per pair
-- NOOBS SD card with Raspbian installed per pair
-- A keyboard and mouse connected to the RPi per pair
-- A monitor connected to the RPi per pair
-- An Ethernet hub or switch with enough ports to connect all the RPis
-- A set of cards with a selection of numbers on them (starter activity)
-- A piece of paper and a pen or pencil (starter activity)
 
 ## Lesson introduction
 
-Firstly, go over the concept of a computer *server*. A server is essentially a computer whose main purpose is to provide a service. A web server, for instance, provides the *service* of transmitting web pages, images and files to you over the Internet. A Minecraft server provides the service of preserving the 3D world, remembering what blocks are where and allowing the players to see each other. Servers are computers that are dedicated to a task (but they can be dedicated to more than one).
+Firstly, go over the concept of a computer **server**. A server is essentially a computer whose main purpose is to provide a service. A web server, for instance, provides the service of transmitting web pages, images and files to you over the Internet. A Minecraft server provides the service of preserving the 3D world, remembering what blocks are where and allowing the players to see each other. Servers are computers that are dedicated to a task (but they can be dedicated to more than one).
 
-A computer or application wishing to use a server is often called a *client* because it is like a customer to the server. Web browsers are sometimes called *web clients* because they work like a customer to a web server. You have probably heard your copy of Minecraft referred to as the *game client* for the same reason.
+A computer or application wishing to use a server is often called a **client** because it is like a customer to the server. Web browsers are sometimes called web clients because they work like a customer to a web server. You have probably heard your copy of Minecraft referred to as the game client for the same reason.
 
 Wouldn't it be great if we could have a server that would take care of allocating IP addresses on our network and remembering who owns what address?
 
-This is exactly what DHCP is for. DHCP stands for Dynamic Host Configuration Protocol; *Dynamic* means constantly changing, *Host* is just another word for a computer, *Configuration* refers to configuring your network settings, and *Protocol* means a set of rules that define how to do things.
+This is exactly what DHCP is for. DHCP stands for Dynamic Host Configuration Protocol; **Dynamic** means constantly changing, **Host** is just another word for a computer, **Configuration** refers to configuring your network settings, and **Protocol** means a set of rules that define how to do things.
 
 ## Starter activity
 
@@ -69,43 +54,43 @@ A computing unplugged activity is quite good to get across the logical process f
 
 Begin by nominating one student to be the DHCP server; they own the set of cards, paper, and pen/pencil. The remaining students are now going to be the dynamic hosts/clients (constantly changing computers) on the network.
 
-The DHCP server has a set of rules that must be followed; this is the protocol part of the name. One of the hosts/clients now wants to join the network; their name is *Dave*. This is how the conversation should go:
+The DHCP server has a set of rules that must be followed; this is the protocol part of the name. One of the hosts/clients now wants to join the network; their name is **Dave**. This is how the conversation should go:
 
-- HOST: "Hello I am *Dave*, is there a DHCP server out there?"
-- DHCP: "Yes I am here, *Dave*. I can offer you address X."
+- HOST: "Hello I am **Dave**, is there a DHCP server out there?"
+- DHCP: "Yes I am here, **Dave**. I can offer you address X."
 - HOST: "DHCP server, can I take address X please."
-- DHCP: "*Dave*, here is address X. You may keep it for 12 hours."
+- DHCP: "**Dave**, here is address X. You may keep it for 12 hours."
 
-The DHCP server hands over an address card to *Dave* and writes his name on the paper, along with the address that was given, the time *when* it was given, and the length of the lease (12 hours). The time it was given is used to keep track of the age of the lease.
+The DHCP server hands over an address card to **Dave** and writes his name on the paper, along with the address that was given, the time when it was given, and the length of the lease (12 hours). The time it was given is used to keep track of the age of the lease.
 
-Stop for a moment and consider if there was any part of this conversation that was unexpected. When a computer joins a network it has no way of knowing if a DHCP server is available, so it sends out a broadcast signal to the whole network asking if one is there. If one *is* available it will reply to the host offering an address; the host then officially requests the address. The part you might not have expected is that the address is given with a lease time, in this case 12 hours. Consider why this might be and continue below.
+Stop for a moment and consider if there was any part of this conversation that was unexpected. When a computer joins a network it has no way of knowing if a DHCP server is available, so it sends out a broadcast signal to the whole network asking if one is there. If one is available it will reply to the host offering an address; the host then officially requests the address. The part you might not have expected is that the address is given with a lease time, in this case 12 hours. Consider why this might be and continue below.
 
-Now let's suppose *Dave* wants to leave the network or is shutting down. The conversation would go like this:
+Now let's suppose **Dave** wants to leave the network or is shutting down. The conversation would go like this:
 
-- HOST: "DHCP server, I am *Dave* and I am giving my IP address back to you."
-- DHCP: "Thank you *Dave*, goodbye."
+- HOST: "DHCP server, I am **Dave** and I am giving my IP address back to you."
+- DHCP: "Thank you **Dave**, goodbye."
 
-*Dave* then hands his address card back to the DHCP server. The DHCP server puts the card back with the others and crosses his name out from the piece of paper. That address card could now be given out to another computer/host that joins the network.
+**Dave** then hands his address card back to the DHCP server. The DHCP server puts the card back with the others and crosses his name out from the piece of paper. That address card could now be given out to another computer/host that joins the network.
 
-Now consider what might happen if *Dave* didn't shut down cleanly. Suppose the power cable was suddenly unplugged and he didn't get a chance to neatly give his address back to the DHCP server; or perhaps he decided to just run off with the address! What would happen then? The DHCP server won't give out the same address twice, so would the address be forever lost in limbo?
+Now consider what might happen if **Dave** didn't shut down cleanly. Suppose the power cable was suddenly unplugged and he didn't get a chance to neatly give his address back to the DHCP server; or perhaps he decided to just run off with the address! What would happen then? The DHCP server won't give out the same address twice, so would the address be forever lost in limbo?
 
-This is where the lease time comes in! The address *will* be in limbo but only until the lease time expires. After 12 hours goes by this might happen:
+This is where the lease time comes in! The address will be in limbo but only until the lease time expires. After 12 hours goes by this might happen:
 
-- HOST: "Hello I am *Fred*, is there a DHCP server out there?"
-- DHCP: "Yes I am here *Fred*. It has been over 12 hours since I last heard from *Dave* so I can can offer you his old address X."
+- HOST: "Hello I am **Fred**, is there a DHCP server out there?"
+- DHCP: "Yes I am here **Fred**. It has been over 12 hours since I last heard from **Dave** so I can can offer you his old address X."
 - HOST: "DHCP server, can I take address X please."
-- DHCP: "*Fred*, here is address X. You may keep it for 12 hours."
+- DHCP: "**Fred**, here is address X. You may keep it for 12 hours."
 
-The DHCP server makes a new card with that address on, hands it to *Fred*, crosses the name *Dave* off the list, and replaces it with *Fred*.
+The DHCP server makes a new card with that address on, hands it to **Fred**, crosses the name **Dave** off the list, and replaces it with **Fred**.
 
 So that is how this problem is dealt with; all addresses are given out with a time limit attached to them so that in the event of hosts crashing or suddenly leaving the network, the DHCP server will slowly repossess those addresses as their lease times expire.
 
 An alternative version of this conversation might be:
 
-- HOST: "DHCP server I am *Dave*, 12 hours have gone by so can I renew address X please?"
-- DHCP: *Dave* you may keep the address for another 12 hours.
+- HOST: "DHCP server I am **Dave**, 12 hours have gone by so can I renew address X please?"
+- DHCP: **Dave** you may keep the address for another 12 hours.
 
-The DHCP server then updates the time at which the address was given to Dave on the paper. Note that not all DHCP servers will use a 12 hour lease; it can be either longer or shorter depending on the server in question. Now if *Fred* wants to join the network, he will be given a different address to *Dave*.
+The DHCP server then updates the time at which the address was given to Dave on the paper. Note that not all DHCP servers will use a 12 hour lease; it can be either longer or shorter depending on the server in question. Now if **Fred** wants to join the network, he will be given a different address to **Dave**.
 
 ## Main practical activity
 
