@@ -2,7 +2,7 @@
 
 You'll need to be online to install packages.
 
-First update and upgrade your system. Enter the following commands in to the terminal:
+First update and upgrade your system. Enter the following commands into the terminal:
 
 ```bash
 sudo apt-get update
