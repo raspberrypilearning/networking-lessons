@@ -6,7 +6,7 @@ There are three steps to setting up the Raspberry Pis so one can control the oth
 
 Before the Raspberry Pis can communicate they need to be connected together via a network. Normally, when a device connects to a network, it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis we have to give each Pi its own IP address.
 
-1. Follow the [guide from lesson 1](lesson-1/rpi-static-ip-address.md) to configure the IP address.
+1. Follow the Static IP address setup guide from lesson 1 to configure the IP address.
 
 1. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`.
 
@@ -33,7 +33,7 @@ PING 192.168.0.3 (192.168.0.3) 56(84) bytes of data.
 rtt min/avg/max/mdev = 3.466/3.788/4.380/0.322 ms
 ```
 
-If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked you are ready to write the chat program.
+If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked you are ready to write the control program.
 
 ## Setting up the control program
 
@@ -119,7 +119,7 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 - Try to change the frequency of the client requests (the `?` character). What happens if they get sent too fast?
 - What happens if you stop the server program by pressing `CTRL-C`?
 
-### Programming challenges
+## What next?
 
 - Change the message that appears when your program starts.
 - Change the message that appears when a client connects.
@@ -127,7 +127,4 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 - Make the LED flash more quickly.
 - Make the LED flash for a random length of time.
 - Comment your code to explain what each section does.
-
-# Cleanup
-
-If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [guide](lesson-1/rpi-static-ip-address.md).
+- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of the Static IP address guide from lesson 1.
