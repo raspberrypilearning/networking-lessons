@@ -1,10 +1,12 @@
 # Domain Name System (DNS)
 
-In this lesson, the students will use the Raspberry Pi to learn about the Domain Name System (DNS) on an isolated network. It is recommended that the previous [DHCP lesson](/lesson-3/plan.md) has been completed by all students before attempting this. It is important to complete them in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
+In this lesson, the students will use the Raspberry Pi to learn about the Domain Name System (DNS) on an isolated network. 
 
-You may have noticed that it can be a bit tricky to remember IP addresses. They are comprised of four 8-bit numbers separated by dots; for example, `192.168.0.146`. Human beings often find it difficult to remember a sequence of numbers like this, and find it a lot easier to remember a word or a name instead.
+## Introduction
 
-When we want to access resources on our network such as a web server we currently have to remember the IP address. How can we make it easier for people to connect to network servers without having to remember the IP address numbers?
+It is recommended that the previous [DHCP lesson](/lesson-3/plan.md) has been completed by all students before attempting this. It is important to complete them in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
+
+For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated, without any Ethernet cables connecting it into the main school network.
 
 ## Learning objectives
 
@@ -30,9 +32,8 @@ When we want to access resources on our network such as a web server we currentl
 - Use other Raspberry Pis to perform DNS queries
 - Testing the network
 
-## Resources
 
-For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated, without any Ethernet cables connecting it into the main school network.
+
 
 You will need:
 
@@ -49,11 +50,13 @@ You will need:
 
 ## Lesson introduction
 
-Computer networks can grow to be very large. The internet is the largest network of computers in the world. It's so big, in fact, that the number of computers on the internet is impossible to know. Imagine how difficult it would be if we needed to remember the IP address for every web server we wanted to visit?
+Computer networks can grow to be very large. The internet is the largest network of computers in the world. It's so big, in fact, that the number of computers on the internet is impossible to know. Imagine how difficult it would be if we needed to remember the IP address for every web server we wanted to visit? Additionally, you may have noticed that it can be a bit tricky to remember IP addresses. They are comprised of four 8-bit numbers separated by dots; for example, `192.168.0.146`. Human beings often find it difficult to remember a sequence of numbers like this.
 
-This is what a DNS server is for; DNS stands for Domain Name System. Its primary function is to provide the service of translating easily memorable domain or host names (like google.com or raspberrypi.org) into IP addresses and vice versa. So it's a bit like a telephone directory where you can look up a phone number that you need.
+How can we make it easier for people to connect to network servers without having to remember the IP address numbers?
 
-When you type an address into your browser your computer has to contact a DNS server to ask for the IP address that corresponds to it. The DNS server searches its database for the name, finds the corresponding IP address and then returns it to the client. This process is called a *DNS query*.
+This is what a Domain Name System (DNS) server is for. Its primary function is to provide the service of translating easily memorable domain or host names (like google.com or raspberrypi.org) into IP addresses and vice versa. 
+
+When you type an address into your browser your computer has to contact a DNS server to ask for the IP address that corresponds to it. The DNS server searches its database for the name, finds the corresponding IP address and then returns it to the client. This process is called a **DNS query**.
 
 The client then communicates directly with the server using the IP address returned by the DNS query.
 
@@ -80,7 +83,7 @@ That seems pretty simple, doesn't it? Now consider this scenario. Nominate one m
 - HOST: "Hello `201.72.165.69`, please give me your home page."
 - `201.72.165.69`: "Here is my home page."
 
-So in this scenario the first DNS server didn't have 'dave' in its database, but it passed on the query to a second DNS server that did. This is what is known as an *iterative DNS query*. The second DNS server responded to the first and the first responded to the original host/client with the IP address information. The answer was fed back along the chain, so to speak.
+So in this scenario the first DNS server didn't have 'dave' in its database, but it passed on the query to a second DNS server that did. This is what is known as an **iterative DNS query**. The second DNS server responded to the first and the first responded to the original host/client with the IP address information. The answer was fed back along the chain, so to speak.
 
 Consider how something like this might work on the internet. Real internet DNS distributes the responsibility of remembering what name corresponds to an IP address to a network of many DNS servers around the world.
 
