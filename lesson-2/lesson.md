@@ -43,7 +43,7 @@ This can be done on paper or as drag and drop on an interactive whiteboard.
 1. Explain that the students will connect two Raspberry Pis in a similar way to lesson 1, but this time they will control hardware instead of sending text.
 1. Students should set up the network and control LEDs on another Pi using the [Student Worksheet](worksheet.md).
 1. Extension ideas: add screen messages for feedback, change how the LED flashes, change the physical button (e.g. a "pressure pad" made out of foil), add another LED (advanced).
-1. *Optional*: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the Static IP address guide given in the previous lesson.
+1. **Optional**: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the Static IP address guide given in the previous lesson.
 
 ## Plenary
 
