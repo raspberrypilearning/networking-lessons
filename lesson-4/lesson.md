@@ -1,8 +1,6 @@
 # Domain Name System (DNS)
 
-This learning resource describes a practical exercise where the Raspberry Pi is used to demonstrate the Domain Name System (DNS) on an isolated network.
-
-![](images/cover.jpg)
+In this lesson, the students will use the Raspberry Pi to learn about the Domain Name System (DNS) on an isolated network.
 
 ## Introduction
 
