@@ -1,6 +1,6 @@
 # Lesson 2 - The Internet of Things: how do computers control other computers?
 
-By 2020 there will be [50 billion things](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342) connected to the internet, from cows to fridges to cars. This is known as the Internet of Things. In this lesson students will build the simplest Thing - a button that lights an LED across a network.
+By 2020 it is estimated that there will be [50 billion things](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342) connected to the internet, from cows to fridges to cars. This is known as the Internet of Things. In this lesson students will build the simplest Thing - a button that lights an LED across a network.
 
 Students will be aware of how widespread and important networks are from lesson 1. They should be comfortable with terms used in that lesson, such as IP address, server, and client. The plenary could be used as a refresher.
 
