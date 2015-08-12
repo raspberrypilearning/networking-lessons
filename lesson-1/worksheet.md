@@ -101,4 +101,4 @@ Try it! Send messages from the server to the client and vice versa.
 - When you type in a certain letter or word, get the program to expand this to a whole sentence that is sent to your caller.
 - When the word "random" is typed, send one of a number of different random messages to your caller.
 - When certain words are received from your caller, automatically send a whole phrase back to them, with different phrases for different words.
-- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [static IP address setup guide](lesson-01/rpi-static-ip-address.md).
+- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [static IP address setup guide](rpi-static-ip-address.md).
