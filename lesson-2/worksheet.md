@@ -84,7 +84,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
 ### 2. Set up the server with a button
 
-Note: you do not need a button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or similar. Again, use header wires that protect the GPIO pins.
+Note: you do not need to use an actual button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or something similar. Again, use header wires that protect the GPIO pins.
 
 ![](images/server-button-setup.png)
 
