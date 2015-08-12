@@ -4,7 +4,7 @@ In this lesson, the students will use the Raspberry Pi to learn about the Domain
 
 ## Introduction
 
-It is recommended that the previous [DHCP lesson](/lesson-3/plan.md) has been completed by all students before attempting this. It is important to complete them in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
+It is recommended that all students complete the previous [DHCP lesson](/lesson-3/plan.md) before attempting this. It is important to complete the lessons in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
 
 For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated, without any Ethernet cables connecting it into the main school network.
 
