@@ -138,7 +138,7 @@ sudo nano /etc/hosts.dnsmasq
 
 You should now be editing a blank file. There is an expected format that must be followed here. The format is `IP<tab>hostname`; note the use of the tab keyboard key.
 
-Enter the following line for example (this will give our server the DNS name of *serverpi*):
+Enter the following line for example (this will give our server the DNS name of **serverpi**):
 
 ```
 192.168.0.1    serverpi
@@ -152,7 +152,7 @@ sudo service dnsmasq restart
 
 The server is now active and listening for requests from client host computers.
 
-There is one more thing we need to do. Because our server is set up with a static IP address, the DHCP server will never actually tell *itself* to use its own DNS server. So there is one more file we need to change to make that work. Enter the following command:
+There is one more thing we need to do. Because our server is set up with a static IP address, the DHCP server will never actually tell itself to use its own DNS server. So there is one more file we need to change to make that work. Enter the following command:
 
 ```bash
 sudo nano /etc/resolv.conf
@@ -188,7 +188,7 @@ Before we change anything, we need to consider the problem of DHCP IP address al
 
 There is a convention in networking where server computers (as in providing some kind of service) have static IP addresses. That way, the IP address can be entered into the DNS lookup database without worrying about it changing at some point in the future.
 
-**We need to be careful here!** If we just manually assign a static IP address, there is a possibility that the DHCP server could hand that same IP address out to another computer joining the network. To avoid that, we can change the *range* of IP addresses the DHCP server will give out. If we start the DHCP range at a higher number, we can leave ourselves a block of non-DHCP IP addresses that we can freely assign as static addresses for servers.
+We need to be careful here: if we just manually assign a static IP address, there is a possibility that the DHCP server could hand that same IP address out to another computer joining the network. To avoid that, we can change the range of IP addresses the DHCP server will give out. If we start the DHCP range at a higher number, we can leave ourselves a block of non-DHCP IP addresses that we can freely assign as static addresses for servers.
 
 ### Back on the server Pi again
 
@@ -198,7 +198,7 @@ Enter the following command to edit the `dnsmasq` configuration file:
 sudo nano /etc/dnsmasq.conf
 ```
 
-You'll see the `dhcp-range` line shows the first IP address (currently `192.168.0.2`) followed by the last one (currently `192.168.0.254`). Change the first IP address to be *.51* so that we can have the lower 50 for static IP addresses.
+You'll see the `dhcp-range` line shows the first IP address (currently `192.168.0.2`) followed by the last one (currently `192.168.0.254`). Change the first IP address to be **.51** so that we can have the lower 50 for static IP addresses.
 
 The line should now look like this:
 
