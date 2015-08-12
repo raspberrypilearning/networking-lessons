@@ -6,7 +6,7 @@ There are three steps to setting up the Raspberry Pis so one can control the oth
 
 Before the Raspberry Pis can communicate they need to be connected together via a network. Normally, when a device connects to a network, it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis we have to give each Pi its own IP address.
 
-1. Follow the [Static IP address setup guide](rpi-static-ip-address.md) from lesson 1 to configure the IP address.
+1. Follow the [Static IP address setup guide](lesson-1/rpi-static-ip-address.md) from lesson 1 to configure the IP address.
 
 1. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`.
 
