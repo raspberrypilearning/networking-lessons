@@ -127,4 +127,4 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 - Make the LED flash more quickly.
 - Make the LED flash for a random length of time.
 - Comment your code to explain what each section does.
-- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of the Static IP address guide from lesson 1.
+- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of the [Static IP address setup guide](/lesson-1/rpi-static-ip-address.md) from lesson 1.
