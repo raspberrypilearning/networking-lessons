@@ -4,7 +4,7 @@ In this lesson, the students will use the Raspberry Pi to learn about the Domain
 
 ## Introduction
 
-It is recommended that all students complete the previous [DHCP lesson](/lesson-3/plan.md) before attempting this. It is important to complete the lessons in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
+It is recommended that all students complete the previous DHCP lesson before attempting this. It is important to complete the lessons in this order because understanding DNS requires the understanding of its relationship to DHCP. Please note that DNS is a fairly complex subject and this resource is only an introduction to the concept. It is not intended to be a comprehensive guide. Distributed DNS is not covered in detail but it will be briefly discussed.
 
 For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated, without any Ethernet cables connecting it into the main school network.
 
@@ -31,22 +31,6 @@ For the majority of the lesson, it is suggested that work is carried out by stud
 - Setting up one Raspberry Pi to be a DNS server
 - Use other Raspberry Pis to perform DNS queries
 - Testing the network
-
-
-
-
-You will need:
-
-- The DHCP server Raspberry Pi from the previous lesson
-- One or more Raspberry Pis with a [web server](http://www.raspberrypi.org/documentation/remote-access/web-server/apache.md) running (optional)
-- A Raspberry Pi per pair of students
-- An Ethernet cable per pair
-- NOOBS SD card with Raspbian installed per pair
-- A keyboard and mouse connected to the RPi per pair
-- A monitor connected to the RPi per pair
-- An Ethernet hub or switch with enough ports to connect all the RPis
-- A set of cards with a selection of numbers on them (starter activity)
-- A piece of paper and a pen or pencil (starter activity)
 
 ## Lesson introduction
 
