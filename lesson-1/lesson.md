@@ -2,7 +2,7 @@
 
 In this lesson students will build a simple network and use it to communicate via a network chat program. The students will learn how to network two Raspberry Pis and then write a small program in Python that allows them to send messages to each other.
 
-If students are not confident with setting up the Raspberry Pi and editing and running Python programs, you might want to try a scheme of work such as the [Turing Test](https://github.com/raspberrypilearning/turing-test-lessons) first.
+If students are not confident with setting up the Raspberry Pi and editing and running Python programs, you might want to try a scheme of work such as the [Turing Test](https://www.raspberrypi.org/learning/turing-test-lessons/) first.
 
 ## Learning objectives
 
