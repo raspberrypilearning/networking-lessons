@@ -1,6 +1,6 @@
-# Domain Name System (DNS)
+# Lesson 4 - Domain Name System (DNS)
 
-In this lesson, the students will use the Raspberry Pi to learn about the Domain Name System (DNS) on an isolated network. 
+In this lesson, the students will use the Raspberry Pi to learn about the Domain Name System (DNS) on an isolated network.
 
 ## Introduction
 
@@ -38,7 +38,7 @@ Computer networks can grow to be very large. The internet is the largest network
 
 How can we make it easier for people to connect to network servers without having to remember the IP address numbers?
 
-This is what a Domain Name System (DNS) server is for. Its primary function is to provide the service of translating easily memorable domain or host names (like google.com or raspberrypi.org) into IP addresses and vice versa. 
+This is what a Domain Name System (DNS) server is for. Its primary function is to provide the service of translating easily memorable domain or host names (like google.com or raspberrypi.org) into IP addresses and vice versa.
 
 When you type an address into your browser your computer has to contact a DNS server to ask for the IP address that corresponds to it. The DNS server searches its database for the name, finds the corresponding IP address and then returns it to the client. This process is called a **DNS query**.
 

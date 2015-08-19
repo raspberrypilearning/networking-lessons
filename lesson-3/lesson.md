@@ -1,4 +1,4 @@
-#Dynamic Host Configuration Protocol (DHCP)
+# Lesson 3 - Dynamic Host Configuration Protocol (DHCP)
 
 In this lesson, students will learn how the Raspberry Pi can be used to demonstrate Dynamic Host Configuration Protocol on an isolated network.
 
