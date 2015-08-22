@@ -16,7 +16,7 @@ sudo apt-get upgrade
 1. On the command line type:
     
     ```bash
-    wget http://goo.gl/LE4Po3 -O network.py --no-check-certificate
+    wget https://goo.gl/UJMdZh -O network.py --no-check-certificate
     ```
     
 1. Type `ls` to check that the file has downloaded.
