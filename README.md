@@ -47,8 +47,6 @@ It is suggested that work is carried out by students on a Raspberry Pi each or i
   - One network cable between two Raspberry Pis
   - Four female-to-female header leads and one LED (lesson 2 only)
 
-See the [teacher setup instructions](lesson-1/teacher-instructions.md) for more information.
-
 ## Lessons
 
 - [Lesson 1: How do computers communicate?](lesson-1/lesson.md)
