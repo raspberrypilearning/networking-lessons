@@ -8,7 +8,7 @@ In this lesson, you will set up two Raspberry Pis to form a network, and use Pyt
 
 Before the Raspberry Pis can communicate they need to be connected together via a network. Normally, when a device connects to a network, it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis, we have to give each Pi its own IP address.
 
-1. Follow the [static IP address setup guide](rpi-static-ip-address.md) to configure the IP address.
+1. Follow the [static IP address setup guide](../rpi-static-ip-address.md) to configure the IP address.
 
 1. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`.
 
@@ -101,4 +101,4 @@ Try it! Send messages from the server to the client and vice versa.
 - When you type in a certain letter or word, get the program to expand this to a whole sentence that is sent to your caller.
 - When the word "random" is typed, send one of a number of different random messages to your caller.
 - When certain words are received from your caller, automatically send a whole phrase back to them, with different phrases for different words.
-- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [static IP address setup guide](rpi-static-ip-address.md).
+- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [static IP address setup guide](../rpi-static-ip-address.md).

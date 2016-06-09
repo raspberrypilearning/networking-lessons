@@ -6,7 +6,7 @@ There are three steps to setting up the Raspberry Pis so one can control the oth
 
 Before the Raspberry Pis can communicate they need to be connected together via a network. Normally, when a device connects to a network, it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis we have to give each Pi its own IP address.
 
-1. Follow the [Static IP address setup guide](/lesson-1/rpi-static-ip-address.md) from lesson 1 to configure the IP address.
+1. Follow the [Static IP address setup guide](../rpi-static-ip-address.md) from lesson 1 to configure the IP address.
 
 1. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`.
 
@@ -127,4 +127,4 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 - Make the LED flash more quickly.
 - Make the LED flash for a random length of time.
 - Comment your code to explain what each section does.
-- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of the [Static IP address setup guide](/lesson-1/rpi-static-ip-address.md) from lesson 1.
+- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of the [Static IP address setup guide](../rpi-static-ip-address.md) from lesson 1.
