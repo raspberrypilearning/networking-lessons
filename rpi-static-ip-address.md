@@ -6,29 +6,27 @@ Sometimes, however, you might want your Pi to boot up with the same IP address e
 
 ## Setup
 
-Edit the file `/etc/network/interfaces` as follows:
+Edit the file `/etc/dhcpcd.conf` as follows:
 
-1. Type `sudo nano /etc/network/interfaces` at the command prompt.
+1. Type `sudo nano /etc/dhcpcd.conf` at the command prompt.
 
-1. Look for the line:
+1. Scroll to the bottom of the script, and add the following lines:
 
-    ```bash
-    iface eth0 inet dhcp
-    ```
+	``` bash
+	interface eth0
 
-1. Change the word `dhcp` to `static`.
+	static ip_address=192.168.0.2/24
+	static routers=192.168.0.1
+	static domain_name_servers=192.168.0.1
 
-1. Press `Enter` and add the following lines:
+	interface wlan0
 
-    ```
-    address 192.168.0.2
-    netmask 255.255.255.0
-    network 192.168.0.0
-    broadcast 192.168.0.255
-    gateway 192.168.0.1
-    ```
+	static ip_address=192.168.0.2/24
+	static routers=192.168.0.1
+	static domain_name_servers=192.168.0.1
+	```
 
-1. Save the file with `CTRL + O` and then exit nano with `CTRL + X`.
+1. Save the file with `ctrl + o` and then exit nano with `ctrl + x`.
 
 Your Raspberry Pi will now boot up with the IP address `192.168.0.2` every time; we didn't use `192.168.0.1` as this is reserved for the router. You can of course use any address you like, but in the configuration above the range must be between `192.168.0.2` and `192.168.0.255`.
 
@@ -38,35 +36,35 @@ Your Raspberry Pi will now boot up with the IP address `192.168.0.2` every time;
 
 1. Log in and type `ip a`.
 
-1. You should see the IP address you set in the `eth0:` entry.
+1. You should see the IP address you set in the `eth0:` or `wlan0` entry.
 
 ## Troubleshooting
 
 If your Pi is not networked then the IP address may not show. To fix this, connect your Pi to an active network socket, which can be on another running Raspberry Pi; you can also manually bring up (activate) the network interface by typing `sudo ifup eth0` followed by `ip a`.
 
-If you still cannot see your IP address, or it is different to the one you set, then open the `interfaces` file, as described in step 1 of the setup instructions, and check that your edits are correct.
+If you still cannot see your IP address, or it is different to the one you set, then open the `dhcpcd.conf` file, as described in step 1 of the setup instructions, and check that your edits are correct.
 
 ## Clean up - reverting the changes
 
-Normally you don't want your computer set to use a static IP address. You can change the network configuration back by editing the `interfaces` file as follows:
+Normally you don't want your computer set to use a static IP address. You can change the network configuration back by editing the `dhcpcd.conf` file as follows:
 
-1. Type `sudo nano /etc/network/interfaces` at the command prompt.
+1. Type `sudo nano /etc/dhcpcd.conf` at the command prompt.
 
-1. Look for the line:
+1. Look for the lines you added.
 
-    ```
-    iface eth0 inet static
-    ```
+	``` bash
+	interface eth0
 
-1. Change the word `static` to `dhcp`.
+	static ip_address=192.168.0.2/24
+	static routers=192.168.0.1
+	static domain_name_servers=192.168.0.1
 
-1. Comment out the following lines by putting a `#` in front (you can delete them entirely but you may want them again later):
+	interface wlan0
 
-    ```
-    #address 192.168.0.2
-    #netmask 255.255.255.0
-    #network 192.168.0.0
-    #broadcast 192.168.0.255
-    #gateway 192.168.0.1
-    ```
-1. Save the file with `CTRL + O`, exit nano with `CTRL + X`  and then reboot with `sudo reboot'.
+	static ip_address=192.168.0.2/24
+	static routers=192.168.0.1
+	static domain_name_servers=192.168.0.1
+	```
+
+1. Remove these lines and then save the filt `ctrl + o` and exit `ctrl + x`
+1. Reboot the Raspberry Pi.
