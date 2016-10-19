@@ -34,7 +34,7 @@ Students will be aware of how widespread and important networks are from lesson 
 
 This can be done on paper or as drag and drop on an interactive whiteboard.
 
-1. Students have one minute to rearrange the Python code on the [code review](code-review.md) into the correct order.
+1. Students have one minute to rearrange the Python code on the [code review](worksheet2.md) into the correct order.
 1. Show the program running. Discuss what goes where and why, e.g. importing modules, functions, while loops etc.
 1. Show video of PA's [Raspberry Pi competition](https://www.youtube.com/watch?v=x_-ngDlclw0) for schools and explain that all of the projects rely on a server controlling some physical aspect of a Raspberry Pi e.g. sensors, displays, pumps, camera etc.
 
