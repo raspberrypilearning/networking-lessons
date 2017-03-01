@@ -17,7 +17,8 @@ Before the Raspberry Pis can communicate they need to be connected together via 
 ### Testing your network
 
 1. Connect the two Pis with an Ethernet cable
-1. On the Pi that has the IP address ending `.2`, type:
+1. On the Pi that has the IP address ending `.2` open a terminal from the Accessories menu folder
+1. In the terminal window which opens type:
 
     ```bash
     ping 192.168.0.3 -c5
@@ -39,6 +40,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
 ## Setting up the chat program
 
+1. Open a terminal from teh Accessories menu folder 
 1. Create a new file with the nano editor by typing `nano chat.py`.
 1. Type in the following program:
 
@@ -63,19 +65,21 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
       network.say(phrase)
     ```
 
-1. Save the file with `CTRL-O` and then exit nano with `CTRL-X`.
+1. Save the file with `ctrl + o` and then press `enter`, then exit nano with `ctrl + x`.
 
 1. Set the first Pi up as a **server** by typing:
 
     ```bash
-    python chat.py
+    python3 chat.py
     ```
+    into your terminal window
 
 1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to a Raspberry Pi that has the IP address ending in `.2.`, type:
 
     ```bash
-    python chat.py 192.168.0.2
+    python3 chat.py 192.168.0.2
     ```
+    into your terminal window
 
 1. You should now be able to type messages on either Pi, and they will appear on the other screen when you press the `enter` key.
 
@@ -90,7 +94,7 @@ Try it! Send messages from the server to the client and vice versa.
 ### Things to try:
 
 - Can you break the program by sending messages too fast or at the same time?
-- What happens if you stop the server program by pressing `CTRL-C`?
+- What happens if you stop the server program by pressing `ctrl + c`?
 - Edit `chat.py` to change the 'me:' and 'them:' messages that appear to your own names.
 
 ## What next? 
