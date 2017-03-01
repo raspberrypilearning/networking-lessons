@@ -53,7 +53,7 @@ The concepts that the students learned from the homework will be used and consol
 
 1. Students should set up the network and send messages using the [Student Worksheet](worksheet.md).
 
-1. **Optional**: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the student worksheet.
+1. **Optional**: If you will be using the SD cards again on a network, students will need to undo their changes to the `/etc/dhcpcd.conf` file. Ask them to do this as per the 'Cleanup' section of the 'How to set up up your Raspberry Pi to have a static IP address' guide.
 
 ## Plenary
 
