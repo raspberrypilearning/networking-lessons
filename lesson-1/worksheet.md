@@ -43,6 +43,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 1. Open a terminal from teh Accessories menu folder 
 1. Create a new file with the nano editor by typing `nano chat.py`.
 1. Type in the following program:
+*Tip: The nano text editor does not auto-indent your code like the IDLE editor does. You will need to put the indents in manually. Choose either a certain number of spaces for your indents, or use the tab key.*
 
     ```python
     # A simple internet-chat application
