@@ -40,7 +40,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
 ## Setting up the chat program
 
-1. Open a terminal from teh Accessories menu folder 
+1. Open a terminal from the Accessories menu folder 
 1. Create a new file with the nano editor by typing `nano chat.py`.
 1. Type in the following program:
 
