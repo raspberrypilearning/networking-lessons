@@ -15,7 +15,7 @@ Before the Raspberry Pis can communicate they need to be connected together via 
 ### Testing your network
 
 1. Connect the two Pis with an Ethernet cable
-1. On the Pi that has the IP address ending `.2`, type:
+1. On the Pi that has the IP address ending `.2`, open the terminal and type:
 
     ```bash
     ping 192.168.0.3 -c5
@@ -36,43 +36,94 @@ rtt min/avg/max/mdev = 3.466/3.788/4.380/0.322 ms
 If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked you are ready to write the control program.
 
 ## Setting up the control program
+### On the Server Pi
 
-1. Create a new file with the nano editor by typing `nano thing-server.py`.
+1. Create a new file with the nano editor by typing `nano thing-server.py`
 1. Type in the following program:
 
-    ```python
-    import RPi.GPIO as GPIO
-    import time
-    import network
-
-    SWITCH = 10
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(SWITCH, GPIO.IN)
-
-    def heard(phrase):
+   ```python
+   from gpiozero import Button
+   from time import sleep
+   import network
+   
+   btn = Button(10)
+   
+   def heard(phrase):
       print "heard:" + phrase
       for a in phrase:
-        if a == "\r" or a == "\n":
-          pass # strip it
-        else:
-          if (GPIO.input(SWITCH)):
-            network.say("1")
-          else:
-            network.say("0")
-
-    while True:
-      print "waiting for connection"
+         if a == "\r" or a == "\n":
+            pass # strip it
+         else:
+            if btn.is_pressed():
+               network.say("1")
+            else:
+               network.say("0")
+   
+   while True:
+      print("waiting for connection")
       network.wait(whenHearCall=heard)
-      print "connected"
-
+      print("connected")
+      
       while network.isConnected():
-        print "server is running"  
-        time.sleep(1)
+         print("server is running")
+         sleep(1)
+         
+      print("connection closed")
+   ```
 
-      print "connection closed"
-     ```
+1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
+### On the Client Pi
+1. Create a new file with the nano editor by typing `nano thing-client.py`
+1. Type in the following program:
+   ```python
+   from gpiozero import LED
+   from time import sleep
+   import sys
+   import network
+   
+   SERVER_IP = sys.argv[1]
+   led = LED(17)
+   gotResponse = False
+   
+   def heard(phrase):
+  global gotResponse
+  print("heard:" + phrase)
 
-1. Save the file with `CTRL-O` and then exit nano with `CTRL-X`.
+  for a in phrase:
+    if a == "\r" or a == "\n":
+      pass # skip it
+    elif a == "0":
+      led.off()
+    else:
+      led.on()
+  gotResponse = True
+
+while True:
+  while True:
+    try:
+      print("connecting to switch server")
+      network.call(SERVER_IP, whenHearCall=heard)
+      break
+    except:
+      print("refused")
+      sleep(1)
+
+  print("connected")
+
+  while network.isConnected():
+    gotResponse = False
+    print("polling")
+    network.say("?")
+
+    while network.isConnected() and not gotResponse:
+      print("waiting")
+      sleep(1)
+
+  print("connection closed")
+  ```
+1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
+
+
 
 ## Setting up the hardware
 
