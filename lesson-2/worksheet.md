@@ -49,7 +49,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
    btn = Button(10)
    
    def heard(phrase):
-      print "heard:" + phrase
+      print("heard:" + phrase)
       for a in phrase:
          if a == "\r" or a == "\n":
             pass # strip it
@@ -149,13 +149,13 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 1. Set the first Pi up as a **server** by typing:
 
     ```bash
-    python thing-server.py
+    python3 thing-server.py
     ```
 
 1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to the Raspberry Pi that has the IP address ending in `.2`, type:
 
     ```bash
-    python thing-client.py 192.168.0.2
+    python3 thing-client.py 192.168.0.2
     ```
 
 1. You should now be able to press the button on the Raspberry Pi connected to the server, and the LED will flash on the client. Try it out!
