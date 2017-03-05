@@ -72,6 +72,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
    ```
 
 1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
+
 ### On the Client Pi
 1. Create a new file with the nano editor by typing `nano thing-client.py`
 1. Type in the following program:
