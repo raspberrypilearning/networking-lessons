@@ -87,40 +87,40 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
    gotResponse = False
    
    def heard(phrase):
-  global gotResponse
-  print("heard:" + phrase)
+      global gotResponse
+      print("heard:" + phrase)
 
-  for a in phrase:
-    if a == "\r" or a == "\n":
-      pass # skip it
-    elif a == "0":
-      led.off()
-    else:
-      led.on()
-  gotResponse = True
+      for a in phrase:
+         if a == "\r" or a == "\n":
+            pass # skip it
+         elif a == "0":
+            led.off()
+         else:
+            led.on()
+      gotResponse = True
 
-while True:
-  while True:
-    try:
-      print("connecting to switch server")
-      network.call(SERVER_IP, whenHearCall=heard)
-      break
-    except:
-      print("refused")
-      sleep(1)
+   while True:
+      while True:
+         try:
+            print("connecting to switch server")
+            network.call(SERVER_IP, whenHearCall=heard)
+            break
+         except:
+            print("refused")
+            sleep(1)
 
-  print("connected")
+    print("connected")
 
-  while network.isConnected():
-    gotResponse = False
-    print("polling")
-    network.say("?")
+    while network.isConnected():
+       gotResponse = False
+       print("polling")
+       network.say("?")
 
-    while network.isConnected() and not gotResponse:
-      print("waiting")
-      sleep(1)
+       while network.isConnected() and not gotResponse:
+          print("waiting")
+          sleep(1)
 
-  print("connection closed")
+   print("connection closed")
   ```
 1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
 
