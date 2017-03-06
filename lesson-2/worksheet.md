@@ -36,7 +36,7 @@ rtt min/avg/max/mdev = 3.466/3.788/4.380/0.322 ms
 If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked you are ready to write the control program.
 
 ## Setting up the control program
-### On the Server Pi
+### On the Server Pi (192.168.0.2)
 
 1. Create a new file with the nano editor by typing `nano thing-server.py`
 1. Type in the following program:
@@ -73,7 +73,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
 1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
 
-### On the Client Pi
+### On the Client Pi (192.168.0.3)
 1. Create a new file with the nano editor by typing `nano thing-client.py`
 1. Type in the following program:
    ```python
@@ -130,11 +130,11 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
 **Important**: do not connect hardware directly to the pins! Use female header wires that you can plug onto the GPIO pins and your hardware.
 
-### 1. Set up the client machine with an LED
+### 1. Set up the client machine with an LED (192.168.0.3)
 
 ![](images/client-led-setup.png)
 
-### 2. Set up the server with a button
+### 2. Set up the server with a button (192.168.0.2)
 
 Note: you do not need to use an actual button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or something similar. Again, use header wires that protect the GPIO pins.
 
@@ -165,7 +165,7 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 - What is happening, physically and electrically, when you press the button?
 - What happens at the other end, electrically, when the server receives a signal?
 
-###Things to try:
+### Things to try:
 
 - Can you break the program by pressing the button too fast?
 - Try to change the frequency of the client requests (the `?` character). What happens if they get sent too fast?
