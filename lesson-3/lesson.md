@@ -98,7 +98,7 @@ Firstly, select one Raspberry Pi to act as the DHCP server. It can be a good ide
 
 **Note:** Because only one Raspberry Pi will be the DHCP server, this part of the activity is best carried out by one person with all the other students observing. We do not need more than one DHCP server; in fact, more than one can cause problems!
 
-Enter the following commands:
+Enter the following commands into a terminal window (open terminal from the Accessories sub-menu on your Pi):
 
 ```bash
 sudo apt-get update
@@ -160,7 +160,7 @@ The DHCP service is now active and listening for requests from client host compu
 
 ### On all the remaining client Pis
 
-Before reconnecting any remaining client Pis to the hub/switch, check that their `/etc/dhcpcd.conf` files are configured to get an IP address from a DHCP server. Enter the following command:
+Before reconnecting any remaining client Pis to the hub/switch, check that their `/etc/dhcpcd.conf` files are configured to get an IP address from a DHCP server. Enter the following command into a terminal window (open terminal from the Accessories sub-menu on your Pi):
 
 ```bash
 sudo nano /etc/dhcpcd.conf
