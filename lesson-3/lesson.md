@@ -2,7 +2,7 @@
 
 In this lesson, students will learn how the Raspberry Pi can be used to demonstrate Dynamic Host Configuration Protocol on an isolated network.
 
-By now it will be clear that repeatedly changing the `/etc/network/interfaces` file is time-consuming and laborious. There are a number of disadvantages to giving static IP addresses to all computers on the network. Consider what would happen when you want to add even more computers to your network.
+By now it will be clear that repeatedly changing the `/etc/dhcpcd.conf` file is time-consuming and laborious. There are a number of disadvantages to giving static IP addresses to all computers on the network. Consider what would happen when you want to add even more computers to your network.
 
 - Users must manually allocate IP addresses
 - Users must ensure that no two computers have the same address
@@ -112,7 +112,7 @@ By convention, most DHCP servers have a static IP address which will be the firs
 So first, let’s make the DHCP server Raspberry Pi have a static IP address as per this convention. To configure this we must edit the network interfaces file again. Enter the following command:
 
 ```bash
-sudo nano /etc/network/interfaces
+sudo nano /etc/dhcpcd.conf
 ```
 
 In this file `eth0` refers to the Raspberry Pi Ethernet port and `wlan0` refers to a wireless dongle if you are using one. Find the following line:
