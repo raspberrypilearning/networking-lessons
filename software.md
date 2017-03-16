@@ -8,15 +8,8 @@ First update and upgrade your system. Enter the following commands into the term
 sudo apt-get update
 sudo apt-get upgrade
 ```
+Now you need to install the network package for Python3 using pip3:
 
-## Downloading network.py
-
-1. After booting, log in using the default login `pi` and password `raspberry`.
-
-1. On the command line type:
-    
-    ```bash
-    wget https://goo.gl/UJMdZh -O network.py --no-check-certificate
-    ```
-    
-1. Type `ls` to check that the file has downloaded.
+```bash
+sudo pip3 install network
+```
