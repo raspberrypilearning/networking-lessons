@@ -76,17 +76,17 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 ### On the Client Pi (192.168.0.3)
 1. Create a new file with the nano editor by typing `nano thing-client.py`
 1. Type in the following program:
-   ```python
-   from gpiozero import LED
-   from time import sleep
-   import sys
-   import network
-   
-   SERVER_IP = sys.argv[1]
-   led = LED(17)
-   gotResponse = False
-   
-   def heard(phrase):
+    ```python
+    from gpiozero import LED
+    from time import sleep
+    import sys
+    import network
+
+    SERVER_IP = sys.argv[1]
+    led = LED(17)
+    gotResponse = False
+
+    def heard(phrase):
       global gotResponse
       print("heard:" + phrase)
 
@@ -99,7 +99,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
             led.on()
       gotResponse = True
 
-   while True:
+    while True:
       while True:
          try:
             print("connecting to switch server")
@@ -120,40 +120,40 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
           print("waiting")
           sleep(1)
 
-   print("connection closed")
-  ```
+    print("connection closed")
+    ```
 
-1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
+    1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
 
 
 
-## Setting up the hardware
+    ## Setting up the hardware
 
-**Important**: do not connect hardware directly to the pins! Use female header wires that you can plug onto the GPIO pins and your hardware.
+    **Important**: do not connect hardware directly to the pins! Use female header wires that you can plug onto the GPIO pins and your hardware.
 
-### 1. Set up the client machine with an LED (192.168.0.3)
+    ### 1. Set up the client machine with an LED (192.168.0.3)
 
-![](images/client-led-setup.png)
+    ![](images/client-led-setup.png)
 
-### 2. Set up the server with a button (192.168.0.2)
+    ### 2. Set up the server with a button (192.168.0.2)
 
-Note: you do not need to use an actual button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or something similar. Again, use header wires that protect the GPIO pins.
+    Note: you do not need to use an actual button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or something similar. Again, use header wires that protect the GPIO pins.
 
-![](images/server-button-setup.png)
+    ![](images/server-button-setup.png)
 
-## Running the program
+    ## Running the program
 
-The **server** machine is connected to a button. It monitors data from the client machine, and when it receives a '?' character it sends back a '1' if the button is pressed and a '0' if it is not.
+    The **server** machine is connected to a button. It monitors data from the client machine, and when it receives a '?' character it sends back a '1' if the button is pressed and a '0' if it is not.
 
-The **client** machine is connected to an LED. It sends a '?' character every second to the server, and if it gets back a '1' in reply it turns the LED on.
+    The **client** machine is connected to an LED. It sends a '?' character every second to the server, and if it gets back a '1' in reply it turns the LED on.
 
-1. Set the first Pi up as a **server** by typing:
+    1. Set the first Pi up as a **server** by typing:
 
     ```bash
     python3 thing-server.py
     ```
 
-1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to the Raspberry Pi that has the IP address ending in `.2`, type:
+    1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to the Raspberry Pi that has the IP address ending in `.2`, type:
 
     ```bash
     python3 thing-client.py 192.168.0.2
