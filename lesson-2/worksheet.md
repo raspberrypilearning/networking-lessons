@@ -122,6 +122,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
    print("connection closed")
   ```
+
 1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
 
 
