@@ -46,7 +46,7 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
    from time import sleep
    import network
    
-   btn = Button(10)
+   btn = Button(4)
    
    def heard(phrase):
       print("heard:" + phrase)
