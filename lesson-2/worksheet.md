@@ -147,13 +147,13 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
 
     The **client** machine is connected to an LED. It sends a '?' character every second to the server, and if it gets back a '1' in reply it turns the LED on.
 
-    1. Set the first Pi up as a **server** by typing:
+1. Set the first Pi up as a **server** by typing:
 
     ```bash
     python3 thing-server.py
     ```
 
-    1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to the Raspberry Pi that has the IP address ending in `.2`, type:
+1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to the Raspberry Pi that has the IP address ending in `.2`, type:
 
     ```bash
     python3 thing-client.py 192.168.0.2
