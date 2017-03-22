@@ -66,5 +66,5 @@ Normally you don't want your computer set to use a static IP address. You can ch
 	static domain_name_servers=192.168.0.1
 	```
 
-1. Remove these lines and then save the filt `ctrl + o` and exit `ctrl + x`
+1. Remove these lines and then save the file `ctrl + o` and exit `ctrl + x`
 1. Reboot the Raspberry Pi.
