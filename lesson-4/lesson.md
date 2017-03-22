@@ -271,7 +271,7 @@ For each web server added you need to:
 
 - Add a line into `/etc/dnsmasq.conf` to give the server a static IP address based on its MAC address
 - Add a DNS lookup entry into `/etc/hosts.dnsmasq`
-- Retsart the `dnsmasq` service with the command: `sudo service dnsmasq restart`
+- Restart the `dnsmasq` service with the command: `sudo service dnsmasq restart`
 - Use `sudo dhcpcd --release` and `sudo dhcpcd --request` on the web server itself
 - Finally, you can then ping the server or load its home page using the DNS name from the other client Pis
 
