@@ -217,7 +217,7 @@ You'll need to look up the MAC address on the web server Pi for this. This can b
 Add that MAC address into the following line of the `dnsmasq` configuration file on the DNS server Pi. For example, to always assign `192.168.0.20`:
 
 ```bash
-sudo nano /etc/dnsmasq.cof
+sudo nano /etc/dnsmasq.conf
 ```
 and now add this line to end of your `dnsmasq.conf` file:
 
