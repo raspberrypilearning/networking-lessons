@@ -1,6 +1,6 @@
 # Software installation
 
-You'll need to be online to install packages.
+You will need to be online to install packages.
 
 First update and upgrade your system. Enter the following commands into the terminal:
 
