@@ -85,7 +85,7 @@ Consider what can be done to solve this problem.
 
 This requires the use of the DHCP server Raspberry Pi from the previous lesson. The software we're going to use is the same `dnsmasq` service from that lesson, so we don't need to install anything else this time. Ensure that this Pi is easily distinguishable from the others.
 
-If you have a web server available, first do a quick exercise where the students load the home page in a browser using the IP address only. Load the Raspberry Pi desktop with the `startx` command, open the Midori browser and enter the IP address of the web server into the address bar.
+If you have a web server available, first do a quick exercise where the students load the home page in a browser using the IP address only. Open the Chromium browser and enter the IP address of the web server prefixed with `http://` into the address bar.
 
 If you need to find out the IP address of the web server you can use the `ifconfig` command on the web server Pi itself. The address will be under `eth0` on the second line after `inet addr`. Everyone should be able to load the page correctly.
 
@@ -93,7 +93,7 @@ If you need to find out the IP address of the web server you can use the `ifconf
 
 **Note:** Because only one Raspberry Pi will be the DNS server, this part of the activity is best carried out by one person with all the other students observing.
 
-The `dnsmasq` program can actually provide both DHCP and DNS services, so all we need to do now is configure it. Enter the following command to edit the `dnsmasq` configuration file:
+The `dnsmasq` program can actually provide both DHCP and DNS services, so all we need to do now is configure it. Enter the following command into a terminal (under the Accessories sub-menu) to edit the `dnsmasq` configuration file:
 
 ```bash
 sudo nano /etc/dnsmasq.conf
@@ -128,9 +128,9 @@ no-hosts
 addn-hosts=/etc/hosts.dnsmasq
 ```
 
-Press `Ctrl + O` then `Enter` to save, followed by `Ctrl + X` to quit nano.
+Press `Ctrl + o` then `Enter` to save, followed by `Ctrl + x` to quit nano.
 
-Next we need to create our lookup table for host names. Enter the following command:
+Next we need to create our lookup table for host names. Enter the following command into your terminal window:
 
 ```bash
 sudo nano /etc/hosts.dnsmasq
@@ -144,7 +144,7 @@ Enter the following line for example (this will give our server the DNS name of 
 192.168.0.1    serverpi
 ```
 
-Press `Ctrl + O` then `Enter` to save followed by `Ctrl + X` to quit nano. Before we reactivate the DNS/DHCP server, make sure the server Pi is the only device connected to the practise hub/switch; unplug all other Ethernet connections. Enter the following command to restart the `dnsmasq` service:
+Press `Ctrl + o` then `Enter` to save followed by `Ctrl + x` to quit nano. Before we reactivate the DNS/DHCP server, make sure the server Pi is the only device connected to the practise hub/switch; unplug all other Ethernet connections. Enter the following command to restart the `dnsmasq` service:
 
 ```bash
 sudo service dnsmasq restart
@@ -152,21 +152,25 @@ sudo service dnsmasq restart
 
 The server is now active and listening for requests from client host computers.
 
-There is one more thing we need to do. Because our server is set up with a static IP address, the DHCP server will never actually tell itself to use its own DNS server. So there is one more file we need to change to make that work. Enter the following command:
+When we set up our static IP address for our DHCP server last lesson, we already told it to use itself as the DNS server. If you open the `dhcpcd.conf` file by typing the following into your terminal:
 
 ```bash
-sudo nano /etc/resolv.conf
+sudo nano /etc/dhcpcd.conf
 ```
 
-This file should have the following line only:
+Scroll down to the bottom of the file and you should see the following configuration for your static IP address:
 
 ```
-nameserver 127.0.0.1
+interface eth0
+
+static ip_address=192.168.0.1/24
+static routers=192.168.0.1
+static domain_name_servers=192.168.0.1
 ```
 
-You could also use `192.168.0.1` here instead but `127.0.0.1` is a generic way to reference the local computer, regardless of what its IP address is. So if we changed the static IP to something else we wouldn't need to edit `resolv.conf` again.
+The line `static domain_name_servers=192.168.0.1` is telling our DNS and DHCP server to use itself as the Domain Name Server for this network interface.
 
-Press `Ctrl + O` then `Enter` to save followed by `Ctrl + X` to quit nano. Now enter the following command to restart the networking service:
+Press `Ctrl + x` to quit nano. Now enter the following command to restart the networking service:
 
 ```bash
 sudo service networking restart
@@ -174,7 +178,7 @@ sudo service networking restart
 
 ### On all the remaining client Pis
 
-Before reconnecting any remaining client Pis to the hub/switch, check that their `/etc/network/interfaces` files are configured to get an IP address from a DHCP server. They should still be configured this way from the previous lesson.
+Before reconnecting any remaining client Pis to the hub/switch, check that their `/etc/dhcpcd.conf` files are configured to get an IP address from a DHCP server. They should still be configured this way from the previous lesson.
 
 You can now go ahead and start reconnecting them to the hub/switch; they should immediately acquire an IP address from the DHCP server. Check this by using the command `ifconfig` again; the IP addresses given out should be randomly selected from the range specified on the server.
 
@@ -206,17 +210,22 @@ The line should now look like this:
 dhcp-range=192.168.0.51,192.168.0.254,255.255.255.0,12h
 ```
 
-Now we can safely assign a static IP address to our web server. There are actually two ways we can achieve this.  One is to edit the `/etc/network/interfaces` and `/etc/resolv.conf` files on the web server itself; or we can configure the DHCP server to recognise it by its MAC address and always assign it the same IP address. The latter is the more elegant way because it will also send the DNS server configuration settings via the DHCP offer; it also puts all the control in the hands of the server.
+Now we can safely assign a static IP address to our web server. There are actually two ways we can achieve this.  One is to edit the `/etc/dhcpcd.conf` file on the web server itself; or we can configure the DHCP server to recognise it by its MAC address and always assign it the same IP address. The latter is the more elegant way because it will also send the DNS server configuration settings via the DHCP offer; it also puts all the control in the hands of the server.
 
 You'll need to look up the MAC address on the web server Pi for this. This can be found by entering the `ifconfig` command on it; look under `eth0` and on the first line just after `HWaddr` (hardware address). The MAC address will be something like `b8:27:eb:aa:bb:cc`.
 
 Add that MAC address into the following line of the `dnsmasq` configuration file on the DNS server Pi. For example, to always assign `192.168.0.20`:
 
+```bash
+sudo nano /etc/dnsmasq.conf
+```
+and now add this line to end of your `dnsmasq.conf` file:
+
 ```
 dhcp-host=b8:27:eb:aa:bb:cc,192.168.0.20
 ```
 
-Press `Ctrl + O` then `Enter` to save followed by `Ctrl + X` to quit nano.
+Press `Ctrl + o` then `Enter` to save followed by `Ctrl + x` to quit nano.
 
 Now we just need to choose a name for the web server and add it into the `hosts.dnsmasq` file:
 
@@ -231,7 +240,7 @@ Add a new line to the file following the expected format. For example:
 192.168.0.20   webserverpi
 ```
 
-Press `Ctrl + O` then `Enter` to save followed by `Ctrl + X` to quit nano. Enter the following command to restart the `dnsmasq` service:
+Press `Ctrl + o` then `Enter` to save followed by `Ctrl + x` to quit nano. Enter the following command to restart the `dnsmasq` service:
 
 ```bash
 sudo service dnsmasq restart
@@ -242,15 +251,15 @@ sudo service dnsmasq restart
 We now just need to make the web server Pi release and renew its IP address from the DHCP server; it should then end up with the static IP that we have chosen to match the DNS entry. Enter the following commands to do this:
 
 ```bash
-sudo ifdown eth0
-sudo ifup eth0
+sudo dhcpcd --release
+sudo dhcpcd --request
 ```
 
 Double-check that the correct IP address was given by the DHCP server; use the `ifconfig` command for this. The address will be under `eth0` on the second line after `inet addr`. If it is not correct then go back and check the server Pi configuration files for mistakes, restart `dnsmasq`, and repeat the above two commands.
 
 ### On all the remaining client Pis
 
-The remaining client Pis should now all be able to enter the name `webserverpi` into their web browser and see the home page load. In doing so, they will all be performing successful DNS queries against the server.  The command `ping webserverpi` should also work.
+The remaining client Pis should now all be able to enter the address `http://webserverpi` into their web browser and see the home page load. In doing so, they will all be performing successful DNS queries against the server.  The command `ping webserverpi` should also work.
 
 ## Plenary
 
@@ -262,8 +271,8 @@ For each web server added you need to:
 
 - Add a line into `/etc/dnsmasq.conf` to give the server a static IP address based on its MAC address
 - Add a DNS lookup entry into `/etc/hosts.dnsmasq`
-- Retsart the `dnsmasq` service with the command: `sudo service dnsmasq restart`
-- Use `sudo ifdown eth0` and `sudo ifup eth0` on the web server itself
+- Restart the `dnsmasq` service with the command: `sudo service dnsmasq restart`
+- Use `sudo dhcpcd --release` and `sudo dhcpcd --request` on the web server itself
 - Finally, you can then ping the server or load its home page using the DNS name from the other client Pis
 
 ## Homework
