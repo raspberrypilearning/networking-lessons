@@ -15,7 +15,7 @@ Before the Raspberry Pis can communicate they need to be connected together via 
 ### Testing your network
 
 1. Connect the two Pis with an Ethernet cable
-1. On the Pi that has the IP address ending `.2`, type:
+1. On the Pi that has the IP address ending `.2`, open the terminal and type:
 
     ```bash
     ping 192.168.0.3 -c5
@@ -36,74 +36,127 @@ rtt min/avg/max/mdev = 3.466/3.788/4.380/0.322 ms
 If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked you are ready to write the control program.
 
 ## Setting up the control program
+### On the Server Pi (192.168.0.2)
 
-1. Create a new file with the nano editor by typing `nano thing-server.py`.
+1. Create a new file with the nano editor by typing `nano thing-server.py`
 1. Type in the following program:
 
+   ```python
+   from gpiozero import Button
+   from time import sleep
+   import network
+   
+   btn = Button(4)
+   
+   def heard(phrase):
+      print("heard:" + phrase)
+      for a in phrase:
+         if a == "\r" or a == "\n":
+            pass # strip it
+         else:
+            if btn.is_pressed():
+               network.say("1")
+            else:
+               network.say("0")
+   
+   while True:
+      print("waiting for connection")
+      network.wait(whenHearCall=heard)
+      print("connected")
+      
+      while network.isConnected():
+         print("server is running")
+         sleep(1)
+         
+      print("connection closed")
+   ```
+
+1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
+
+### On the Client Pi (192.168.0.3)
+1. Create a new file with the nano editor by typing `nano thing-client.py`
+1. Type in the following program:
     ```python
-    import RPi.GPIO as GPIO
-    import time
+    from gpiozero import LED
+    from time import sleep
+    import sys
     import network
 
-    SWITCH = 10
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(SWITCH, GPIO.IN)
+    SERVER_IP = sys.argv[1]
+    led = LED(17)
+    gotResponse = False
 
     def heard(phrase):
-      print "heard:" + phrase
+      global gotResponse
+      print("heard:" + phrase)
+
       for a in phrase:
-        if a == "\r" or a == "\n":
-          pass # strip it
-        else:
-          if (GPIO.input(SWITCH)):
-            network.say("1")
-          else:
-            network.say("0")
+         if a == "\r" or a == "\n":
+            pass # skip it
+         elif a == "0":
+            led.off()
+         else:
+            led.on()
+      gotResponse = True
 
     while True:
-      print "waiting for connection"
-      network.wait(whenHearCall=heard)
-      print "connected"
+      while True:
+         try:
+            print("connecting to switch server")
+            network.call(SERVER_IP, whenHearCall=heard)
+            break
+         except:
+            print("refused")
+            sleep(1)
 
-      while network.isConnected():
-        print "server is running"  
-        time.sleep(1)
+    print("connected")
 
-      print "connection closed"
-     ```
+    while network.isConnected():
+       gotResponse = False
+       print("polling")
+       network.say("?")
 
-1. Save the file with `CTRL-O` and then exit nano with `CTRL-X`.
+       while network.isConnected() and not gotResponse:
+          print("waiting")
+          sleep(1)
 
-## Setting up the hardware
+    print("connection closed")
+    ```
 
-**Important**: do not connect hardware directly to the pins! Use female header wires that you can plug onto the GPIO pins and your hardware.
+    1. Save the file with `ctrl + o` followed by `Enter` and then exit nano with `ctrl + x`
 
-### 1. Set up the client machine with an LED
 
-![](images/client-led-setup.png)
 
-### 2. Set up the server with a button
+    ## Setting up the hardware
 
-Note: you do not need to use an actual button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or something similar. Again, use header wires that protect the GPIO pins.
+    **Important**: do not connect hardware directly to the pins! Use female header wires that you can plug onto the GPIO pins and your hardware.
 
-![](images/server-button-setup.png)
+    ### 1. Set up the client machine with an LED (192.168.0.3)
 
-## Running the program
+    ![](images/client-led-setup.png)
 
-The **server** machine is connected to a button. It monitors data from the client machine, and when it receives a '?' character it sends back a '1' if the button is pressed and a '0' if it is not.
+    ### 2. Set up the server with a button (192.168.0.2)
 
-The **client** machine is connected to an LED. It sends a '?' character every second to the server, and if it gets back a '1' in reply it turns the LED on.
+    Note: you do not need to use an actual button, just something to connect the GPIO pin to the ground pin. It could be two paper clips or something similar. Again, use header wires that protect the GPIO pins.
+
+    ![](images/server-button-setup.png)
+
+    ## Running the program
+
+    The **server** machine is connected to a button. It monitors data from the client machine, and when it receives a '?' character it sends back a '1' if the button is pressed and a '0' if it is not.
+
+    The **client** machine is connected to an LED. It sends a '?' character every second to the server, and if it gets back a '1' in reply it turns the LED on.
 
 1. Set the first Pi up as a **server** by typing:
 
     ```bash
-    python thing-server.py
+    python3 thing-server.py
     ```
 
 1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to the Raspberry Pi that has the IP address ending in `.2`, type:
 
     ```bash
-    python thing-client.py 192.168.0.2
+    python3 thing-client.py 192.168.0.2
     ```
 
 1. You should now be able to press the button on the Raspberry Pi connected to the server, and the LED will flash on the client. Try it out!
@@ -113,7 +166,7 @@ The **client** machine is connected to an LED. It sends a '?' character every se
 - What is happening, physically and electrically, when you press the button?
 - What happens at the other end, electrically, when the server receives a signal?
 
-###Things to try:
+### Things to try:
 
 - Can you break the program by pressing the button too fast?
 - Try to change the frequency of the client requests (the `?` character). What happens if they get sent too fast?
