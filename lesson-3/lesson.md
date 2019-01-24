@@ -2,7 +2,7 @@
 
 In this lesson, students will learn how the Raspberry Pi can be used to demonstrate Dynamic Host Configuration Protocol on an isolated network.
 
-By now it will be clear that repeatedly changing the `/etc/network/interfaces` file is time-consuming and laborious. There are a number of disadvantages to giving static IP addresses to all computers on the network. Consider what would happen when you want to add even more computers to your network.
+By now it will be clear that repeatedly changing the `/etc/dhcpcd.conf` file is time-consuming and laborious. There are a number of disadvantages to giving static IP addresses to all computers on the network. Consider what would happen when you want to add even more computers to your network.
 
 - Users must manually allocate IP addresses
 - Users must ensure that no two computers have the same address
@@ -98,11 +98,11 @@ Firstly, select one Raspberry Pi to act as the DHCP server. It can be a good ide
 
 **Note:** Because only one Raspberry Pi will be the DHCP server, this part of the activity is best carried out by one person with all the other students observing. We do not need more than one DHCP server; in fact, more than one can cause problems!
 
-Enter the following commands:
+Enter the following commands into a terminal window (open terminal from the Accessories sub-menu on your Pi):
 
 ```bash
 sudo apt-get update
-sudo apt-get install dnsmasq
+sudo apt-get install dnsmasq -y
 ```
 
 Once that has finished you can disconnect from the LAN with internet access and return to the original practice hub/switch.
@@ -112,26 +112,20 @@ By convention, most DHCP servers have a static IP address which will be the firs
 So first, let’s make the DHCP server Raspberry Pi have a static IP address as per this convention. To configure this we must edit the network interfaces file again. Enter the following command:
 
 ```bash
-sudo nano /etc/network/interfaces
+sudo nano /etc/dhcpcd.conf
 ```
 
-In this file `eth0` refers to the Raspberry Pi Ethernet port and `wlan0` refers to a wireless dongle if you are using one. Find the following line:
-
-```bash
-iface eth0 inet dhcp
-```
-
-This line tells the Raspberry Pi to try and get an IP address from a DHCP server for the interface `eth0`. So essentially this is making it a DHCP **client**, but we want to make this a DHCP **server** so this line must be disabled. Put a hash `#` character at the start of the line and add the following four lines below to configure the static IP address, just as you did in previous exercises:
+Scroll to the bottom of the script and add the following lines (if you have previously added these lines in an earlier lesson, make sure they match what is below):
 
 ```
-# iface eth0 inet dhcp
-auto eth0
-iface eth0 inet static
-address 192.168.0.1
-netmask 255.255.255.0
+interface eth0
+
+static ip_address=192.168.0.1/24
+static routers=192.168.0.1
+static domain_name_servers=192.168.0.1
 ```
 
-Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano.  Now enter the following command to restart the networking service on the Raspberry Pi:
+Press `Ctrl + o` then `Enter` to save followed by `Ctrl + x` to quit nano.  Now enter the following command to restart the networking service on the Raspberry Pi:
 
 ```bash
 sudo service networking restart
@@ -147,7 +141,7 @@ sudo mv dnsmasq.conf dnsmasq.default
 sudo nano dnsmasq.conf
 ```
 
-You should now be editing a blank file. Copy and paste the following into it:
+You should now be editing a blank file. Type the following into it:
 
 ```
 interface=eth0
@@ -156,7 +150,7 @@ dhcp-range=192.168.0.2,192.168.0.254,255.255.255.0,12h
 
 The first line tells `dnsmasq` to listen for DHCP requests on the Ethernet port of the Pi. The second line specifies the *range* of IP addresses that can be given out; notice the `12h` at the end of the line which specifies the lease time.
 
-Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano. Before we activate the server, make sure the DHCP server Pi is the only device connected to the practice hub/switch; unplug all other Ethernet connections. Enter the following command to restart the `dnsmasq` service:
+Press `Ctrl + o` then `Enter` to save followed by `Ctrl + x` to quit nano. Before we activate the server, make sure the DHCP server Pi is the only device connected to the practice hub/switch; unplug all other Ethernet connections. Enter the following command to restart the `dnsmasq` service:
 
 ```bash
 sudo service dnsmasq restart
@@ -166,68 +160,103 @@ The DHCP service is now active and listening for requests from client host compu
 
 ### On all the remaining client Pis
 
-Before reconnecting any remaining client Pis to the hub/switch, check that their `/etc/network/interfaces` files are configured to get an IP address from a DHCP server. Enter the following command:
+Before reconnecting any remaining client Pis to the hub/switch, check that their `/etc/dhcpcd.conf` files are configured to get an IP address from a DHCP server. Enter the following command into a terminal window (open terminal from the Accessories sub-menu on your Pi):
 
 ```bash
-sudo nano /etc/network/interfaces
+sudo nano /etc/dhcpcd.conf
 ```
 
-Ensure that a static IP address is **not** specified and check the `iface eth0 inet dhcp` line is there; an example is below.
+Ensure that a static IP address is **not** specified. If you have added lines to end of this file, as specified in the previous lessons, to set a static IP address then you need to either comment the lines you added out (by putting a hash symbol in front of each line) or delete each line added. The example below shows the added lines commented out:
 
 ```
-iface eth0 inet dhcp
-# auto eth0
-# iface eth0 inet static
-# address 192.168.0.1
-# netmask 255.255.255.0
+#interface eth0
+
+#static ip_address=192.168.0.2/24
+#static routers=192.168.0.1
+#static domain_name_servers=192.168.0.1
 ```
 
-Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano.
+Press `Ctrl + o` then `Enter` to save followed by `Ctrl + x` to quit nano.
 
-Restart the networking service on the clients with the command `sudo service networking restart`; you can then go ahead and start reconnecting them to the hub/switch. They should immediately acquire an IP address from the DHCP server.
-
-Check this by using the command `ifconfig` again; the IP addresses given out should be randomly selected from the range specified on the server.
+Restart the networking service on the clients with the following commands:
+```bash
+sudo systemctl daemon-reload
+sudo service networking restart
+``` 
+Now you can then go ahead and start connecting your client to the switch. They should immediately acquire an IP address from the DHCP server. You can check this by using the command:
+```bash
+ifconfig
+```
+The IP addresses given out should be randomly selected from the range specified on the server. It will be shown on the second line just after `inet addr`.
 
 ### Test the network
 
-Once everyone has an IP address the network should work as expected. Test it using your chat program or by playing Minecraft together. Ensure that everyone can successfully ping the DHCP server with the command `ping 192.168.0.1`, and that they can ping each other with the command `ping 192.168.0.X` (where X is the fourth part of their IP address). The server should also be able to ping the clients.
+Once everyone has an IP address the network should work as expected. Ensure that everyone can successfully ping the DHCP server with the command:
+```bash
+ping 192.168.0.1 -c 5
+```
+
+The clients should also be able to ping each other with the command `ping 192.168.0.X -c 5` (where X is the fourth part of their IP address). The server should also be able to ping the clients. 
+
+You could test it using your chat program or by playing Minecraft together. 
 
 ### One step further
 
 If you want to take it one step further and observe the communication between the DHCP server and the clients, the following commands can be used on the **client** Pis.
 
+#### Release your IP address
+
 Firstly, to shut down the Ethernet interface and give back your IP address to the DHCP server, enter this command:
 
 ```bash
-sudo ifdown eth0
+sudo dhcpcd --release
 ```
 
-You should see output similar to the text below. Note the `DHCPRELEASE` line; this is the IP address being surrendered to the server.
+You should see output similar to the text below:
 
 ```
-Listening on LPF/eth0/b8:27:eb:aa:bb:cc
-Sending on   LPF/eth0/b8:27:eb:aa:bb:cc
-Sending on   Socket/fallback
-DHCPRELEASE on eth0 to 192.168.0.1 port 67
+dhcpcd[2712]: sending signal ARLM to pid 2702
+dhcpcd[2712]: waiting for pid 2702 to exit
 ```
+
+You can check that you no longer have an IP address assigned by running the following command:
+```bash
+ifconfig
+```
+
+You should see something similar to the output below. Note that there is no line mentioning `inet addr` as there was the first time you checked.
+```
+eth0   Link encap:Ethernet HWaddr b8:27:eb:ac:83:ab
+          UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+          RX packets:278 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:464 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelength:1000
+          RX bytes:22402 (21.8 KiB) TX bytes:67753 (66.1 KiB)
+```          
+
+#### Request a new IP address
 
 Next, use the following command to start up the Ethernet interface and get an IP address from the DHCP server:
 
 ```bash
-sudo ifup eth0
+sudo dhcpcd --request
 ```
 
-You should see output similar to the text below. Note the `DHCPDISCOVER`, `DHCPREQUEST`, `DHCPOFFER`, and `DHCPACK` lines. See how they correspond to what was being spoken during the starter activity?
+You should see output similar to the text below.  Note the `soliciting a DHCP lease`, `offered 192.168.0.X from 192.168.0.1`, and `leased 192.168.0.X for 43200 seconds` lines. Do you see how they correspond to what was being spoken during the starter activity?
 
 ```
-Listening on LPF/eth0/b8:27:eb:aa:bb:cc
-Sending on   LPF/eth0/b8:27:eb:aa:bb:cc
-Sending on   Socket/fallback
-DHCPDISCOVER on eth0 to 255.255.255.255 port 67 interval 7
-DHCPREQUEST on eth0 to 255.255.255.255 port 67
-DHCPOFFER from 192.168.0.1
-DHCPACK from 192.168.0.1
-bound to 192.168.0.X -- renewal in 40000 seconds.
+dhcpcd[2834]: version 6.7.1 starting
+dhcpcd[2834]: dev: loaded udev
+dhcpcd[2834]: eth0: adding address fe80:e9fe:4302:cbd8:5e1b
+dhcpcd[2834]: DUID 00:01:00:01:1f:cb:3b:7c:b8:27:eb:4a:8d:15
+dhcpcd[2834]: eth0: IAID eb:ac:83:ab
+dhcpcd[2834]: eth0: soliciting a DHCP lease (requesting 0.0.0.0)
+dhcpcd[2834]: eth0: soliciting an IPv6 router
+dhcpcd[2834]: eth0: offered 192.168.0.152 from 192.168.0.1
+dhcpcd[2834]: eth0: leased 192.168.0.152 for 43200 seconds
+dhcpcd[2834]: eth0: adding route to 192.168.0.0/24
+dhcpcd[2834]: eth0: adding default route via 192.168.0.1
+dhcpcd[2834]: forked to background, child pid 2918
 ```
 
 In normal practice you don’t need to keep using these commands because the same thing automatically happens when the Raspberry Pi boots up, shuts down or has its Ethernet port connected to another device.
@@ -242,7 +271,7 @@ The answer is the **MAC** address (sometimes called the physical address). MAC s
 
 The MAC address of a Raspberry Pi can be shown using the `ifconfig` command; look under `eth0` and on the first line just after `HWaddr` (hardware address). The MAC address will be something like `b8:27:eb:aa:bb:cc`. A Raspberry Pi MAC address always starts with `b8:27:eb`. So it’s actually the MAC address of the client host computer that the DHCP server stores to keep a record of who owns which IP address.
 
-Take another look at the `ifup` and `ifdown` command output from earlier!
+Take another look at the `sudo dhcpcd --request` and `ifconfig` command output from earlier, paying particular attention to the the DUID and HWAddr lines in each!
 
 ## Homework
 
